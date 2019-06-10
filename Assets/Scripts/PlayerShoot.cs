@@ -6,8 +6,7 @@ public class PlayerShoot : MonoBehaviour
 
     public Camera cam;
 
-    [SerializeField]
-    private LayerMask layerMask;
+    public LayerMask layerMask;
 
     private RaycastHit hit;
 

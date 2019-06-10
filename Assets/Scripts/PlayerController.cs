@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravity = 14.0f;
 
+    // component caching
     private PlayerMover mover;
 
     private float xMov;
@@ -37,8 +38,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // calculate movement velocity as 3D vector
-        xMov = Input.GetAxisRaw("Horizontal");
-        zMov = Input.GetAxisRaw("Vertical");
+        xMov = Input.GetAxis("Horizontal");
+        zMov = Input.GetAxis("Vertical");
 
         movHorizontal = transform.right * xMov;
         movVertical = transform.forward * zMov;
