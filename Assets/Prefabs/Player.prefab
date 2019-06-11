@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402ebebd3b433da46b9e11907e24dd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUIPrefab: {fileID: 6754529608910788266, guid: c1e1f1bbe57173c4dbcef25aa9116a31,
+  playerUIPrefab: {fileID: 1871651983050894786, guid: c1e1f1bbe57173c4dbcef25aa9116a31,
     type: 3}
 --- !u!114 &7250177114409592959
 MonoBehaviour:
@@ -195,9 +195,11 @@ MonoBehaviour:
     fireRate: 0
     maxBullets: 20
     bullets: 20
+    reloadTime: 1
     graphics: {fileID: 7614711214962990338, guid: 75eae55b953f32a45a94df0b22ab17d8,
       type: 3}
   weaponHolder: {fileID: 4155511888829092930}
+  isReloading: 0
 --- !u!1 &7250177115688654188
 GameObject:
   m_ObjectHideFlags: 0

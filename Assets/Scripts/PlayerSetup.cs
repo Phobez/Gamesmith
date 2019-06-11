@@ -17,6 +17,14 @@ public class PlayerSetup : MonoBehaviour
         // create PlayerUI
         playerUIInstance = Instantiate(playerUIPrefab);
         playerUIInstance.name = playerUIPrefab.name;
+
+        // configure PlayerUI
+        PlayerUI playerUI = playerUIInstance.GetComponent<PlayerUI>();
+        if (playerUI == null)
+        {
+            Debug.LogError("No PlayerUI component on PlayerUI prefab.");
+        }
+        playerUI.SetPlayer(GetComponent<Entity>());
     }
 
     private void OnDisable()

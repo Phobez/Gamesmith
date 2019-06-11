@@ -80,5 +80,11 @@ public class PlayerShoot : MonoBehaviour
                 hit.transform.GetComponent<Entity>().TakeDamage(currentWeapon.damage);
             }
         }
+
+        if (currentWeapon.bullets <= 0)
+        {
+            weaponManager.Reload();
+        }
+
     }
 }
