@@ -8,12 +8,19 @@ using UnityEngine.AI;
 [RequireComponent(typeof(WeaponManager))]
 public class AIController : MonoBehaviour
 {
+    private enum EnemyState
+    {
+        GoToCommandPoint,
+        Attacking,
+        DefendCommandPoint
+    }
+
     // TO-DO: DETECT ONLY ENEMY TEAM ENTITIES
     public LayerMask layerMask;             // target layer mask
 
     public float detectionRange = 10.0f;
 
-    private Transform target;               // NavMesh target
+    public Transform target;               // NavMesh target
     private NavMeshAgent agent;             // NavMeshAgent component reference
     private WeaponManager weaponManager;    // WeaponManager component reference
     private Weapon currentWeapon;           // currently equipped weapon
@@ -26,10 +33,15 @@ public class AIController : MonoBehaviour
     private float sqrDetectionRange;        // sqr of detection range
     private float sqrDistance;              // sqr of distance
 
+    private StrategicEnemyHandler strategicEnemy;
+    public GameObject PlayerNear;
+    private float stateCheckCD; //cooldown for state checking 
+    private EnemyState state;
+
     // Start is called before the first frame update
     private void Start()
     {
-        target = GameController.instance.player.transform;
+        strategicEnemy = FindObjectOfType<StrategicEnemyHandler>();
         agent = GetComponent<NavMeshAgent>();
 
         weaponManager = GetComponent<WeaponManager>();
@@ -40,17 +52,28 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        offset = target.position - transform.position;
-        sqrDistance = offset.sqrMagnitude;
+        //offset = target.position - transform.position;
+        //sqrDistance = offset.sqrMagnitude;
 
-        if (sqrDistance < sqrDetectionRange)
+        //if (sqrDistance < sqrDetectionRange)
+        //{
+        //    agent.SetDestination(target.position);
+        //}
+
+        stateCheckCD -= Time.deltaTime;
+        if(stateCheckCD <= 0)
         {
-            agent.SetDestination(target.position);
+            CheckState();
+            stateCheckCD = Random.Range(0.2f,0.7f);
         }
 
+        FaceTarget();
         currentWeapon = weaponManager.GetCurrentWeapon();
         // stop moving when in range
-        agent.stoppingDistance = currentWeapon.range;
+        if (target.CompareTag("Player"))
+            agent.stoppingDistance = currentWeapon.range;
+        else
+            agent.stoppingDistance = 2;
     }
 
     /// <summary>
@@ -78,7 +101,7 @@ public class AIController : MonoBehaviour
         }
 
         currentWeapon.bullets--;
-
+        GetComponent<AudioSource>().Play();
         if (Physics.Raycast(transform.position, transform.forward, out hit, currentWeapon.range, layerMask))
         {
             // TO-DO: CHECK IF ENEMY TEAM, NOT SPECIFICALLY PLAYER
@@ -99,4 +122,44 @@ public class AIController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
+
+    private void CheckState()
+    {
+        
+        switch(state)
+        {
+            case EnemyState.GoToCommandPoint:
+                if (PlayerNear != null)
+                {
+                    target = PlayerNear.transform;
+                    agent.SetDestination(PlayerNear.transform.position);
+                    state = EnemyState.Attacking;
+                }
+                if (target == null)
+                {
+                    target = strategicEnemy.AssignTarget().transform;
+                    agent.SetDestination(target.position);
+                }
+                break;
+            case EnemyState.DefendCommandPoint:
+
+                //defend
+
+                break;
+            case EnemyState.Attacking:
+                if(PlayerNear != null && target.CompareTag("Player"))
+                {
+                    Shoot();
+                }
+                else
+                {
+                    target = strategicEnemy.AssignTarget().transform;
+                    agent.SetDestination(target.position);
+                    state = EnemyState.GoToCommandPoint;
+                }
+
+                break;
+        }
+    }
+    
 }

@@ -18,7 +18,7 @@ public class PlayerSetup : MonoBehaviour
     private void OnEnable()
     {
         // create PlayerUI
-        if (playerUIInstance != null)
+        if (playerUIInstance == null)
         {
             playerUIInstance = Instantiate(playerUIPrefab);
             playerUIInstance.name = playerUIPrefab.name;
