@@ -92,4 +92,9 @@ public class Entity : MonoBehaviour
             TakeDamage(1000);
         }
     }
+
+    public float GetHealthPercentage()
+    {
+        return (float) currentHealth / maxHealth;
+    }
 }
