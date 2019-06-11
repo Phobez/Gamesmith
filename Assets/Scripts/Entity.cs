@@ -19,12 +19,7 @@ public class Entity : MonoBehaviour
     protected Collider col;
     protected WaitForSeconds respawnDelay;
 
-    private void Awake()
-    {
-        SetUp();
-    }
-
-    protected void SetUp()
+    public void SetUp()
     {
         col = GetComponent<Collider>();
         respawnDelay = new WaitForSeconds(GameController.instance.matchSettings.respawnDelay);
@@ -33,7 +28,7 @@ public class Entity : MonoBehaviour
 
     public void SetDefaults()
     {
-        isDead = false;
+        IsDead = false;
 
         currentHealth = maxHealth;
 
@@ -50,7 +45,7 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(int _amount)
     {
-        if (isDead)
+        if (IsDead)
         {
             return;
         }
@@ -65,7 +60,7 @@ public class Entity : MonoBehaviour
 
     protected void Die()
     {
-        isDead = true;
+        IsDead = true;
 
         for (int i = 0; i < componentsToDisableOnDeath.Length; i++)
         {
@@ -76,8 +71,6 @@ public class Entity : MonoBehaviour
         {
             col.enabled = false;
         }
-
-        Debug.Log(transform.name + " is DEAD!");
 
         StartCoroutine(Respawn());
     }
@@ -90,8 +83,6 @@ public class Entity : MonoBehaviour
         Transform _spawnPoint = GameController.instance.GetSpawnPoint();
         transform.position = _spawnPoint.position;
         transform.rotation = _spawnPoint.rotation;
-
-        Debug.Log(transform.name + " respawned.");
     }
 
     private void Update()
