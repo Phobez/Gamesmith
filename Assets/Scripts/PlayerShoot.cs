@@ -27,6 +27,15 @@ public class PlayerShoot : MonoBehaviour
     {
         currentWeapon = weaponManager.GetCurrentWeapon();
 
+        if (currentWeapon.bullets < currentWeapon.maxBullets)
+        {
+            if (Input.GetButtonDown("Reload"))
+            {
+                weaponManager.Reload();
+                return;
+            }
+        }
+
         if (currentWeapon.fireRate <= 0.0f)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -49,6 +58,21 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
+        if (weaponManager.isReloading)
+        {
+            return;
+        }
+
+        if (currentWeapon.bullets <= 0)
+        {
+            weaponManager.Reload();
+            return;
+        }
+
+        currentWeapon.bullets--;
+
+        Debug.Log("Remaining bullets: " + currentWeapon.bullets);
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, layerMask))
         {
             if (hit.transform.gameObject.CompareTag("Enemy"))
