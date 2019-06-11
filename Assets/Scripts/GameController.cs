@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// A component to control game logic.
+/// </summary>
 public class GameController : MonoBehaviour
 {
-    public MatchSettings matchSettings;
-
-    public Transform spawnPoint;
-
-    public static GameController instance = null;
+    #region Singleton
+    public static GameController instance = null;   // static GameController instance
 
     private void Awake()
     {
@@ -19,9 +19,23 @@ public class GameController : MonoBehaviour
             Debug.LogError("More than one GameController in scene.");
         }
     }
+    #endregion
 
+    public GameObject player;
+
+    public MatchSettings matchSettings;
+
+    // TO-DO: CREATE MULTIPLE SPAWN POINTS FOR EACH TEAM
+    //        OR CREATE ONE SPAWN POINT FOR EACH TEAM
+    public Transform spawnPoint;
+
+    /// <summary>
+    /// A method to return the appropriate spawn point.
+    /// </summary>
+    /// <returns>Transform of the spawn point.</returns>
     public Transform GetSpawnPoint()
     {
+        // TO-DO: DYNAMICALLY RETURN APPROPRIATE SPAWN POINT DEPENDING ON TEAM
         return spawnPoint;
     }
 }

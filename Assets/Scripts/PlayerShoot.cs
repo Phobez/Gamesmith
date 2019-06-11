@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// A component to handle player shooting.
+/// </summary>
 [RequireComponent(typeof(WeaponManager))]
 public class PlayerShoot : MonoBehaviour
 {
-    private PlayerWeapon currentWeapon;
-    private WeaponManager weaponManager;
+    private Weapon currentWeapon;
+    private WeaponManager weaponManager;    // WeaponManager reference
 
-    public Camera cam;
+    public Camera cam;                      // player camera reference
 
-    public LayerMask layerMask;
+    public LayerMask layerMask;             // enemy team layer mask
 
+    // cached variables
     private RaycastHit hit;
 
     private void Start()
@@ -70,8 +74,6 @@ public class PlayerShoot : MonoBehaviour
         }
 
         currentWeapon.bullets--;
-
-        Debug.Log("Remaining bullets: " + currentWeapon.bullets);
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, layerMask))
         {

@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// A component defining Player and AI attributes and behaviour.
+/// </summary>
 public class Entity : MonoBehaviour
 {
     protected bool isDead = false;
-    public bool IsDead
+    public bool IsDead                                  // getter setter
     {
         get { return isDead; }
         protected set { isDead = value; }
@@ -16,9 +19,12 @@ public class Entity : MonoBehaviour
 
     [SerializeField]
     protected Behaviour[] componentsToDisableOnDeath;
-    protected Collider col;
+    protected Collider col;                             // to be disabled on death
     protected WaitForSeconds respawnDelay;
 
+    /// <summary>
+    /// A method to initially set up Entity.
+    /// </summary>
     public void SetUp()
     {
         col = GetComponent<Collider>();
@@ -26,6 +32,9 @@ public class Entity : MonoBehaviour
         SetDefaults();
     }
 
+    /// <summary>
+    /// A method to set values to default.
+    /// </summary>
     public void SetDefaults()
     {
         IsDead = false;
@@ -43,6 +52,18 @@ public class Entity : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(1000);
+        }
+    }
+
+    /// <summary>
+    /// A method to take damage and check health.
+    /// </summary>
+    /// <param name="_amount">Amount of damage received.</param>
     public void TakeDamage(int _amount)
     {
         if (IsDead)
@@ -58,6 +79,9 @@ public class Entity : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// A method to kill the Entity and initiate respawn.
+    /// </summary>
     protected void Die()
     {
         IsDead = true;
@@ -75,6 +99,10 @@ public class Entity : MonoBehaviour
         StartCoroutine(Respawn());
     }
 
+    /// <summary>
+    /// A coroutine to handle respawn.
+    /// </summary>
+    /// <returns></returns>
     protected IEnumerator Respawn()
     {
         yield return respawnDelay;
@@ -85,16 +113,12 @@ public class Entity : MonoBehaviour
         transform.rotation = _spawnPoint.rotation;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(1000);
-        }
-    }
-
+    /// <summary>
+    /// A method to return Entity health as a percentage between 0 and 1.
+    /// </summary>
+    /// <returns>Health in percentage between 0 and 1.</returns>
     public float GetHealthPercentage()
     {
-        return (float) currentHealth / maxHealth;
+        return (float)currentHealth / maxHealth;
     }
 }

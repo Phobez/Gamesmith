@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+// TEMPORARY SCRIPT
+// REMOVE LATER
 public class GunFire : MonoBehaviour
 {
     private AudioSource audioSource;
