@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 1301960796}
   m_Layer: 0
   m_Name: Command Point
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1604,8 +1604,9 @@ GameObject:
   - component: {fileID: 1942187785}
   - component: {fileID: 1942187791}
   - component: {fileID: 1942187794}
+  - component: {fileID: 1942187795}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: AI Entity
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1779,7 +1780,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   detectionRange: 15
-  target: {fileID: 0}
+  fieldOfViewAngle: 85
+  targetTag: Player
+  target: {fileID: 1301960795}
   PlayerNear: {fileID: 0}
 --- !u!82 &1942187794
 AudioSource:
@@ -1877,6 +1880,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1942187795
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942187784}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df3fb1548cbdca84785bf92689cdfe41, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2035955627
 GameObject:
   m_ObjectHideFlags: 0
