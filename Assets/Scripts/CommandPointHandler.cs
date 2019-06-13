@@ -20,7 +20,7 @@ public class CommandPointHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AddPoint();
+        //AddPoint();
     }
 
     private void AddPoint()
@@ -43,14 +43,14 @@ public class CommandPointHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-        {
-            PlayerNear.Add(other.transform);
-        }
-        else if(other.CompareTag("Enemy"))
-        {
-            EnemyNear.Add(other.transform);
-        }
+        //if(other.CompareTag("Player"))
+        //{
+        //    PlayerNear.Add(other.transform);
+        //}
+        //else if(other.CompareTag("Enemy"))
+        //{
+        //    EnemyNear.Add(other.transform);
+        //}
     }
 
     private void OnTriggerExit(Collider other)
