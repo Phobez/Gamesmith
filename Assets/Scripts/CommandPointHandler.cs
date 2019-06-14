@@ -18,7 +18,6 @@ public class CommandPointHandler : MonoBehaviour
     private float takingSpeed;
     [SerializeField]
     private Transform[] wayPoint;
-    [SerializeField]
     private List<Transform> playerNear, enemyNear;
     public CommandPointState state;
     
