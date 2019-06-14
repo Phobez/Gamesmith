@@ -23,7 +23,8 @@ public class AIController : MonoBehaviour
 
     public float detectionRange = 10.0f;
     public float fieldOfViewAngle = 85.0f;
-    public string targetTag = "";
+    public string aiTeamTag = GameController.NO_TEAM_TAG;
+    public string targetTag = GameController.NO_TEAM_TAG;
 
     public Transform target;               // NavMesh target
     private NavMeshAgent agent;             // NavMeshAgent component reference

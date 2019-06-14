@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CommandPointHandler : MonoBehaviour
 {
+    public string holderTag = GameController.NO_TEAM_TAG;
+
     private int points;
     [SerializeField]
     private int maxPoint;
     [SerializeField]
-    private Transform[] waypoints;
+    public Transform[] waypoints;
     private List<Transform> PlayerNear, EnemyNear;
 
     // Start is called before the first frame update

@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
+    public static string PLAYER_TEAM_TAG = "PlayerTeam";
+    public static string ENEMY_TEAM_TAG = "EnemyTeam";
+    public static string NO_TEAM_TAG = "NoTeam";
+
     public GameObject player;
 
     public MatchSettings matchSettings;
