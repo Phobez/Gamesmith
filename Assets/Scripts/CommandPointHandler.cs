@@ -4,39 +4,69 @@ using UnityEngine;
 
 public class CommandPointHandler : MonoBehaviour
 {
-    private int points;
+    public enum CommandPointState
+    {
+        Neutral,
+        PlayerOwned,
+        EnemyOwned
+    }
+    
+    private float playerPoin,enemyPoin;
     [SerializeField]
     private int maxPoint;
     [SerializeField]
-    private Transform[] waypoints;
-    private List<Transform> PlayerNear, EnemyNear;
+    private float takingSpeed;
+    [SerializeField]
+    private Transform[] wayPoint;
+    [SerializeField]
+    private List<Transform> playerNear, enemyNear;
+    public CommandPointState state;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        points = 0;        
+        playerNear = new List<Transform>();
+        enemyNear = new List<Transform>();
+        playerPoin = enemyPoin = 0;
+        state = CommandPointState.Neutral;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckOwner();
         AddPoint();
     }
 
     private void AddPoint()
     {
-        if(PlayerNear.Count != 0 && points <= maxPoint)
+        if(playerNear.Count != 0 && playerPoin <= maxPoint && enemyPoin <= 0)
         {
-            foreach(Transform player in PlayerNear)
+            foreach(Transform player in playerNear)
             {
-                points += 1;
+                playerPoin += Time.deltaTime * takingSpeed;
             }
         }
-        if(EnemyNear.Count != 0 && points >= -maxPoint)
+        else if (playerNear.Count != 0 && playerPoin <= maxPoint && enemyPoin > 0)
         {
-            foreach (Transform player in EnemyNear)
+            foreach (Transform player in playerNear)
             {
-                points -= 1;
+                enemyPoin -= Time.deltaTime * takingSpeed;
+            }
+        }
+        if(enemyNear.Count != 0 && playerPoin >= -maxPoint && playerPoin <= 0)
+        {
+            foreach (Transform enemy in enemyNear)
+            {
+                enemyPoin += Time.deltaTime * takingSpeed;
+            }
+        }
+        else if(enemyNear.Count != 0 && playerPoin >= -maxPoint && playerPoin <= 0)
+        {
+            foreach (Transform enemy in playerNear)
+            {
+                playerPoin -= Time.deltaTime * takingSpeed;
             }
         }
     }
@@ -45,11 +75,11 @@ public class CommandPointHandler : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            PlayerNear.Add(other.transform);
+            playerNear.Add(other.transform);
         }
         else if(other.CompareTag("Enemy"))
         {
-            EnemyNear.Add(other.transform);
+            enemyNear.Add(other.transform);
         }
     }
 
@@ -57,11 +87,27 @@ public class CommandPointHandler : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerNear.Remove(other.transform);
+            playerNear.Remove(other.transform);
         }
         else if (other.CompareTag("Enemy"))
         {
-            EnemyNear.Remove(other.transform);
+            enemyNear.Remove(other.transform);
+        }
+    }
+
+    private void CheckOwner()
+    {
+        if(playerPoin >= maxPoint)
+        {
+            state = CommandPointState.PlayerOwned;
+        }
+        if(enemyPoin >= maxPoint)
+        {
+            state = CommandPointState.EnemyOwned;
+        }
+        if(playerPoin < 1 && enemyPoin < 1)
+        {
+            state = CommandPointState.Neutral;
         }
     }
 
