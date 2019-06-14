@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 139795723}
   - component: {fileID: 139795722}
   - component: {fileID: 139795721}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LowerWall001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310326013}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpawnPoint001
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 813321013}
   - component: {fileID: 813321012}
   - component: {fileID: 813321016}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Crate001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1032648264}
   - component: {fileID: 1032648263}
   - component: {fileID: 1032648262}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 1041955715}
   - component: {fileID: 1041955714}
   - component: {fileID: 1041955718}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Crate002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 1063992606}
   - component: {fileID: 1063992605}
   - component: {fileID: 1063992604}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 1239246483}
   - component: {fileID: 1239246482}
   - component: {fileID: 1239246481}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LowerWall001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 1279902714}
   - component: {fileID: 1279902713}
   - component: {fileID: 1279902712}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1401080386}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: _Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 1452381284}
   - component: {fileID: 1452381283}
   - component: {fileID: 1452381282}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LowerWall001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1542,7 +1542,7 @@ GameObject:
   - component: {fileID: 1790472245}
   - component: {fileID: 1790472244}
   - component: {fileID: 1790472243}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Floor001
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2014,7 +2014,7 @@ GameObject:
   - component: {fileID: 2035955630}
   - component: {fileID: 2035955629}
   - component: {fileID: 2035955628}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2107,9 +2107,9 @@ GameObject:
   - component: {fileID: 2083950419}
   - component: {fileID: 2083950418}
   - component: {fileID: 2083950422}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
