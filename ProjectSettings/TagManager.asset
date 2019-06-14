@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Crouch Point
   layers:
   - Default
   - TransparentFX

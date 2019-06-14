@@ -10,14 +10,15 @@ public class CommandPointHandler : MonoBehaviour
         PlayerOwned,
         EnemyOwned
     }
-    
+
+    public string holderTag = GameController.NO_TEAM_TAG;
+
     private float playerPoin,enemyPoin;
     [SerializeField]
     private int maxPoint;
     [SerializeField]
     private float takingSpeed;
-    [SerializeField]
-    private Transform[] wayPoint;
+    public Transform[] waypoints;
     private List<Transform> playerNear, enemyNear;
     public CommandPointState state;
     

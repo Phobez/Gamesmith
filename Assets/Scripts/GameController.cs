@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// A component to control game logic.
@@ -33,6 +35,25 @@ public class GameController : MonoBehaviour
     //        OR CREATE ONE SPAWN POINT FOR EACH TEAM
     public Transform spawnPoint;
 
+    [SerializeField]
+    private List<CommandPointHandler> commandPoints;
+
+    [SerializeField]
+    private float maxPoin, scoringSpeed;
+    private float playerPoin, enemyPoin;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerPoin = enemyPoin = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        CheckPoin();
+    }
+
     /// <summary>
     /// A method to return the appropriate spawn point.
     /// </summary>
@@ -41,5 +62,32 @@ public class GameController : MonoBehaviour
     {
         // TO-DO: DYNAMICALLY RETURN APPROPRIATE SPAWN POINT DEPENDING ON TEAM
         return spawnPoint;
+    }
+
+    private void CheckPoin()
+    {
+        foreach (CommandPointHandler cp in commandPoints)
+        {
+            if (cp.state == CommandPointHandler.CommandPointState.PlayerOwned)
+            {
+                playerPoin += Time.deltaTime * scoringSpeed;
+            }
+            if (cp.state == CommandPointHandler.CommandPointState.EnemyOwned)
+            {
+                enemyPoin += Time.deltaTime * scoringSpeed;
+            }
+        }
+    }
+
+    private void CheckWinner()
+    {
+        if(playerPoin >= maxPoin)
+        {
+            //player win
+        }
+        if(enemyPoin >= maxPoin)
+        {
+            //enemy win
+        }
     }
 }
