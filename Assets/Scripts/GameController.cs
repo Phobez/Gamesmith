@@ -39,13 +39,13 @@ public class GameController : MonoBehaviour
     private List<CommandPointHandler> commandPoints;
 
     [SerializeField]
-    private float maxPoin, scoringSpeed;
-    private float playerPoin, enemyPoin;
+    private float maxScore, scoringSpeed;
+    private float playerScore, enemyScore;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerPoin = enemyPoin = 0;
+        playerScore = enemyScore = 0;
     }
 
     // Update is called once per frame
@@ -75,22 +75,22 @@ public class GameController : MonoBehaviour
         {
             if (cp.state == CommandPointHandler.CommandPointState.PlayerOwned)
             {
-                playerPoin += Time.deltaTime * scoringSpeed;
+                playerScore += Time.deltaTime * scoringSpeed;
             }
             if (cp.state == CommandPointHandler.CommandPointState.EnemyOwned)
             {
-                enemyPoin += Time.deltaTime * scoringSpeed;
+                enemyScore += Time.deltaTime * scoringSpeed;
             }
         }
     }
 
     private void CheckWinner()
     {
-        if(playerPoin >= maxPoin)
+        if(playerScore >= maxScore)
         {
             //player win
         }
-        if(enemyPoin >= maxPoin)
+        if(enemyScore >= maxScore)
         {
             //enemy win
         }
