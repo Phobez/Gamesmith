@@ -221,7 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310326013}
   m_Layer: 0
-  m_Name: SpawnPoint001
+  m_Name: SpawnPointPlayer
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -527,7 +527,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &813321016
 Rigidbody:
@@ -635,7 +635,7 @@ Transform:
   m_Children:
   - {fileID: 139795720}
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041955713
 GameObject:
@@ -727,7 +727,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1041955718
 Rigidbody:
@@ -835,7 +835,7 @@ Transform:
   m_Children:
   - {fileID: 1452381285}
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181650296
 GameObject:
@@ -990,7 +990,10 @@ MonoBehaviour:
   player: {fileID: 756159259}
   matchSettings:
     respawnDelay: 3
-  spawnPoint: {fileID: 310326013}
+  PlayerSpawnPoint:
+  - {fileID: 310326013}
+  EnemySpawnPoint:
+  - {fileID: 1424863691}
   commandPoints: []
   maxPoin: 0
   scoringSpeed: 0
@@ -1097,7 +1100,7 @@ Transform:
   m_LocalScale: {x: 0.25000036, y: 10, z: 20}
   m_Children: []
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1301960794
 GameObject:
@@ -1291,6 +1294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 310326013}
+  - {fileID: 1424863691}
   - {fileID: 1790472246}
   - {fileID: 813321015}
   - {fileID: 1041955717}
@@ -1300,6 +1304,36 @@ Transform:
   - {fileID: 1279902715}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1424863690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424863691}
+  m_Layer: 0
+  m_Name: SpawnPointEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424863691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424863690}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.95, y: 1.5, z: -15.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1401080386}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452381281
 GameObject:
@@ -1619,7 +1653,7 @@ Transform:
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1880619644
 GameObject:
@@ -2092,7 +2126,7 @@ Transform:
   m_Children:
   - {fileID: 1239246480}
   m_Father: {fileID: 1401080386}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2083950417
 GameObject:
@@ -2113,7 +2147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2083950418
 BoxCollider:
   m_ObjectHideFlags: 0

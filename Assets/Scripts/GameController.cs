@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
 
     // TO-DO: CREATE MULTIPLE SPAWN POINTS FOR EACH TEAM
     //        OR CREATE ONE SPAWN POINT FOR EACH TEAM
-    public Transform spawnPoint;
+    public Transform[] PlayerSpawnPoint, EnemySpawnPoint;
 
     [SerializeField]
     private List<CommandPointHandler> commandPoints;
@@ -58,10 +58,15 @@ public class GameController : MonoBehaviour
     /// A method to return the appropriate spawn point.
     /// </summary>
     /// <returns>Transform of the spawn point.</returns>
-    public Transform GetSpawnPoint()
+    public Transform GetSpawnPoint(string tag)
     {
         // TO-DO: DYNAMICALLY RETURN APPROPRIATE SPAWN POINT DEPENDING ON TEAM
-        return spawnPoint;
+        //return spawnPoint;
+        if (tag.Equals("Player"))
+            return PlayerSpawnPoint[Random.Range(0, PlayerSpawnPoint.Length - 1)];
+        else if (tag.Equals("Enemy"))
+            return EnemySpawnPoint[Random.Range(0, EnemySpawnPoint.Length - 1)];
+        return PlayerSpawnPoint[Random.Range(0, PlayerSpawnPoint.Length - 1)];
     }
 
     private void CheckPoin()

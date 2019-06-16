@@ -108,7 +108,7 @@ public class Entity : MonoBehaviour
         yield return respawnDelay;
 
         SetDefaults();
-        Transform _spawnPoint = GameController.instance.GetSpawnPoint();
+        Transform _spawnPoint = GameController.instance.GetSpawnPoint(gameObject.tag);
         transform.position = _spawnPoint.position;
         transform.rotation = _spawnPoint.rotation;
     }
