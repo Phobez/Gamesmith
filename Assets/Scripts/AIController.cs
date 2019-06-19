@@ -89,7 +89,7 @@ public class AIController : MonoBehaviour
     /// <summary>
     /// A method to rotate the AI towards target over time.
     /// </summary>
-    private void FaceTarget()
+    public void FaceTarget()
     {
         direction = (target.position - transform.position).normalized;
         direction.y = 0.0f;
@@ -97,7 +97,15 @@ public class AIController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
     }
 
-    private void Shoot()
+    public void FaceTarget(Transform _target)
+    {
+        direction = (_target.position - transform.position).normalized;
+        direction.y = 0.0f;
+        lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
+    }
+
+    public void Shoot()
     {
         if (weaponManager.isReloading)
         {
