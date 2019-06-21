@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Enemy
-  - Crouch Point
+  - PlayerTeam
+  - EnemyTeam
+  - CrouchPoint
   layers:
   - Default
   - TransparentFX
