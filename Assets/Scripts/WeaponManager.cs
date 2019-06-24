@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// A component to manage weapon equipping and reload.
+/// </summary>
 public class WeaponManager : MonoBehaviour
 {
-    public PlayerWeapon primaryWeapon;
-    public Transform weaponHolder;
+    public Weapon primaryWeapon;
+    public Transform weaponHolder;              // weapon holder game object reference
 
-    private PlayerWeapon currentWeapon;
+    private Weapon currentWeapon;
     private GameObject currentGraphics;
     private Animator currentGraphicsAnimator;
 
@@ -20,24 +23,35 @@ public class WeaponManager : MonoBehaviour
         EquipWeapon(primaryWeapon);
     }
 
-    private void EquipWeapon(PlayerWeapon _weapon)
+    /// <summary>
+    /// A method to equip a weapon.
+    /// </summary>
+    /// <param name="_weapon">Weapon to equip.</param>
+    private void EquipWeapon(Weapon _weapon)
     {
         currentWeapon = _weapon;
 
         reloadDelay = new WaitForSeconds(currentWeapon.reloadTime);
 
-        GameObject _weaponInstance = (GameObject) Instantiate(_weapon.graphics, weaponHolder.position, weaponHolder.rotation);
+        GameObject _weaponInstance = (GameObject)Instantiate(_weapon.graphics, weaponHolder.position, weaponHolder.rotation);
         _weaponInstance.transform.SetParent(weaponHolder);
 
         currentGraphics = _weaponInstance;
         currentGraphicsAnimator = _weaponInstance.GetComponent<Animator>();
     }
 
-    public PlayerWeapon GetCurrentWeapon()
+    /// <summary>
+    /// A method to get the currently equipped weapon.
+    /// </summary>
+    /// <returns>Currently equipped weapon.</returns>
+    public Weapon GetCurrentWeapon()
     {
         return currentWeapon;
     }
 
+    /// <summary>
+    /// A method to reload the weapon.
+    /// </summary>
     public void Reload()
     {
         if (isReloading)
@@ -48,6 +62,10 @@ public class WeaponManager : MonoBehaviour
         StartCoroutine(CReload());
     }
 
+    /// <summary>
+    /// A coroutine to handle weapon reload.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CReload()
     {
         Debug.Log("Reloading...");

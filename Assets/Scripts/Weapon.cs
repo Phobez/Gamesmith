@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
+// TO-DO: REPLACE WITH SCRIPTABLE OBJECT
+/// <summary>
+/// A class containing weapon attributes.
+/// </summary>
 [System.Serializable]
-public class PlayerWeapon
+public class Weapon
 {
     public string name = "Glock";
 
@@ -18,7 +22,7 @@ public class PlayerWeapon
 
     public GameObject graphics;
 
-    public PlayerWeapon()
+    public Weapon()
     {
         bullets = maxBullets;
     }

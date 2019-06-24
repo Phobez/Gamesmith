@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// A component to handle player setup.
+/// </summary>
 [RequireComponent(typeof(Entity))]
 public class PlayerSetup : MonoBehaviour
 {
@@ -15,8 +18,16 @@ public class PlayerSetup : MonoBehaviour
     private void OnEnable()
     {
         // create PlayerUI
-        playerUIInstance = Instantiate(playerUIPrefab);
-        playerUIInstance.name = playerUIPrefab.name;
+        if (playerUIInstance == null)
+        {
+            playerUIInstance = Instantiate(playerUIPrefab);
+            playerUIInstance.name = playerUIPrefab.name;
+        }
+        // enable PlayerUI
+        else
+        {
+            playerUIInstance.SetActive(true);
+        }
 
         // configure PlayerUI
         PlayerUI playerUI = playerUIInstance.GetComponent<PlayerUI>();
@@ -25,10 +36,19 @@ public class PlayerSetup : MonoBehaviour
             Debug.LogError("No PlayerUI component on PlayerUI prefab.");
         }
         playerUI.SetPlayer(GetComponent<Entity>());
+
+        // hide and lock cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void OnDisable()
     {
-        Destroy(playerUIInstance);
+        // disable PlayerUI
+        playerUIInstance.SetActive(false);
+
+        // unhide and unlock cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

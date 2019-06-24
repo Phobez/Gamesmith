@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// A component to handle player input.
+/// </summary>
 [RequireComponent(typeof(PlayerMover))]
 public class PlayerController : MonoBehaviour
 {
