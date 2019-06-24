@@ -9,7 +9,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
 
     private Transform targetCover = null;
 
-    private LayerMask coverPointsLayer = LayerMask.NameToLayer("CoverPoint");
+    private LayerMask coverPointsLayer = 0;
     private Vector3 position = Vector3.zero;
 
     private bool hasFoundCover = false;
@@ -30,6 +30,8 @@ public class FightBehaviour : BaseStateMachineBehaviour
         sqrDetectionRange = aiController.detectionRange * aiController.detectionRange;
 
         targetCover = GoToCover();
+
+        coverPointsLayer = LayerMask.NameToLayer("CoverPoint");
 
         if (targetCover != null)
         {
