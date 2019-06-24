@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderTag: NoTeam
   maxPoint: 50
-  takingSpeed: 0
+  takingSpeed: 1
   waypoints:
   - {fileID: 7908012331559509089}
   - {fileID: 7908012332919702608}
