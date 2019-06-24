@@ -17,12 +17,59 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField]
     private float cameraRotationLimit = 85.0f;
+    [SerializeField]
+    private float crouchingCamHeight = 0.5f;
+    [SerializeField]
+    private float standingCamHeight = 1.0f;
 
     private Rigidbody rb;
+    private Entity entity;
+
+    // cached variables
+    private Vector3 camLocalPosition;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        entity = GetComponent<Entity>();
+
+        camLocalPosition = cam.transform.localPosition;
+    }
+
+    private void Update()
+    {
+        if (entity.IsCrouching)
+        {
+            if (cam.transform.localPosition.y > crouchingCamHeight)
+            {
+                if (cam.transform.localPosition.y - (entity.crouchDeltaHeight * Time.deltaTime * 8) < crouchingCamHeight)
+                {
+                    camLocalPosition.y = crouchingCamHeight;
+                    cam.transform.localPosition = camLocalPosition;
+                }
+                else
+                {
+                    camLocalPosition.y -= entity.crouchDeltaHeight * Time.deltaTime * 8;
+                    cam.transform.localPosition = camLocalPosition;
+                }
+            }
+        }
+        else
+        {
+            if (cam.transform.localPosition.y < standingCamHeight)
+            {
+                if (cam.transform.localPosition.y + (entity.crouchDeltaHeight * Time.deltaTime * 8) > standingCamHeight)
+                {
+                    camLocalPosition.y = standingCamHeight;
+                    cam.transform.localPosition = camLocalPosition;
+                }
+                else
+                {
+                    camLocalPosition.y += entity.crouchDeltaHeight * Time.deltaTime * 8;
+                    cam.transform.localPosition = camLocalPosition;
+                }
+            }
+        }
     }
 
     // run every physics iteration

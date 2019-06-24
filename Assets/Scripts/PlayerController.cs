@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     // component caching
     private PlayerMover mover;
+    private Entity entity;
 
     private float xMov;
     private float zMov;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         mover = GetComponent<PlayerMover>();
+        entity = GetComponent<Entity>();
 
         rotation = Vector3.zero;
         cameraRotationX = 0.0f;
@@ -67,6 +69,18 @@ public class PlayerController : MonoBehaviour
 
         // apply movement
         mover.Move(velocity);
+
+        if (Input.GetButtonDown("Crouch"))
+        {
+            if (entity.IsCrouching)
+            {
+                entity.StandUp();
+            }
+            else
+            {
+                entity.Crouch();
+            }
+        }
 
         // calculate rotation as 3D vector (turning around)
         yRot = Input.GetAxisRaw("Mouse X");

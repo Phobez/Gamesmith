@@ -16,8 +16,6 @@ public class AIController : MonoBehaviour
     //    DefendCommandPoint
     //}
 
-
-
     // TO-DO: DETECT ONLY ENEMY TEAM ENTITIES
     public LayerMask layerMask;             // target layer mask
 
@@ -30,6 +28,7 @@ public class AIController : MonoBehaviour
     private NavMeshAgent agent;             // NavMeshAgent component reference
     private Animator animator;
     private WeaponManager weaponManager;    // WeaponManager component reference
+    private Entity entity;                  // Entity component reference
     public Weapon currentWeapon;           // currently equipped weapon
 
     // cached variables
@@ -53,6 +52,7 @@ public class AIController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         weaponManager = GetComponent<WeaponManager>();
+        entity = GetComponent<Entity>();
 
         sqrDetectionRange = detectionRange * detectionRange;
     }
@@ -133,6 +133,16 @@ public class AIController : MonoBehaviour
         {
             weaponManager.Reload();
         }
+    }
+
+    public void Crouch()
+    {
+        entity.Crouch();
+    }
+
+    public void StandUp()
+    {
+        entity.StandUp();
     }
 
     private void OnDrawGizmosSelected()

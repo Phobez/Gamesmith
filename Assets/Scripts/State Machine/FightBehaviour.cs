@@ -14,6 +14,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
 
     private bool hasFoundCover = false;
     private bool isAtCover = false;
+    private bool hasCrouched = false;
     private float shootTimer = 0.0f;
 
     // cached variables
@@ -79,11 +80,18 @@ public class FightBehaviour : BaseStateMachineBehaviour
         {
             if (shootTimer <= 0)
             {
+                aiController.StandUp();
+                hasCrouched = false;
                 aiController.Shoot();
                 shootTimer = Random.Range(shootTimerMin, shootTimerMax);
             }
             else
             {
+                if (!hasCrouched)
+                {
+                    aiController.Crouch();
+                    hasCrouched = true;
+                }
                 shootTimer -= Time.deltaTime;
             }
         }
