@@ -76,7 +76,9 @@ public class WeaponManager : MonoBehaviour
 
         yield return reloadDelay;
 
+        Debug.Log("Setting bullets to max bullets: " + currentWeapon.maxBullets);
         currentWeapon.bullets = currentWeapon.maxBullets;
+        Debug.Log("Bullets set to: " + currentWeapon.bullets);
 
         isReloading = false;
     }

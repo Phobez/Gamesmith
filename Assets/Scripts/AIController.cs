@@ -53,6 +53,7 @@ public class AIController : MonoBehaviour
 
         weaponManager = GetComponent<WeaponManager>();
         entity = GetComponent<Entity>();
+        entity.SetUp();
 
         sqrDetectionRange = detectionRange * detectionRange;
     }
@@ -60,6 +61,8 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        currentWeapon = weaponManager.GetCurrentWeapon();
+
         //offset = target.position - transform.position;
         //sqrDistance = offset.sqrMagnitude;
 
@@ -115,6 +118,7 @@ public class AIController : MonoBehaviour
         if (currentWeapon.bullets <= 0)
         {
             weaponManager.Reload();
+            Debug.Log("Bullets: " + currentWeapon.bullets);
             return;
         }
 
@@ -122,8 +126,7 @@ public class AIController : MonoBehaviour
         GetComponent<AudioSource>().Play();
         if (Physics.Raycast(transform.position, transform.forward, out hit, currentWeapon.range, layerMask))
         {
-            // TO-DO: CHECK IF ENEMY TEAM, NOT SPECIFICALLY PLAYER
-            if (hit.transform.gameObject.CompareTag("Player"))
+            if (hit.transform.gameObject.CompareTag(targetTag))
             {
                 hit.transform.GetComponent<Entity>().TakeDamage(currentWeapon.damage);
             }
@@ -195,7 +198,40 @@ public class AIController : MonoBehaviour
         // transition to FIGHT state
         if (other.gameObject.CompareTag(targetTag))
         {
-            animator.GetBehaviour<MoveBehaviour>().CheckFieldOfView(other);
+            //animator.GetBehaviour<FightBehaviour>().CheckFieldOfView(other);
+            CheckFieldOfView(other);
         }
+    }
+
+    public bool CheckFieldOfView(Collider _collider)
+    {
+        //enemyInSight = false;
+        GameObject targetEntity = null;
+
+        Vector3 direction = _collider.transform.position - transform.position;
+        float angle = Vector3.Angle(direction, transform.forward);
+
+        if (angle < fieldOfViewAngle * 0.5f)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, detectionRange, layerMask))
+            {
+                if (hit.collider.gameObject.CompareTag(targetTag))
+                {
+                    //enemyInSight = true;
+                    if (targetEntity == null)
+                    {
+                        targetEntity = hit.collider.gameObject;
+                    }
+                    animator.GetBehaviour<FightBehaviour>().SetTargetEntity(targetEntity);
+                    animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.FIGHT]);
+                    
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

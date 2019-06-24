@@ -42,6 +42,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
         else
         {
             hasFoundCover = false;
+            navMeshAgent.isStopped = true;
         }
     }
 
@@ -57,9 +58,11 @@ public class FightBehaviour : BaseStateMachineBehaviour
             if (_hitEnemies.Length > 0)
             {
                 targetEntity = _hitEnemies[0].gameObject;
+                Debug.Log(targetEntity.name);
             }
             else
             {
+                targetEntity = null;
                 animator.SetTrigger(aiStateParameters[AIState.MOVE]);
             }
         }
@@ -148,5 +151,10 @@ public class FightBehaviour : BaseStateMachineBehaviour
         {
             return null;
         }
+    }
+
+    public void SetTargetEntity(GameObject _targetEntity)
+    {
+        targetEntity = _targetEntity;
     }
 }
