@@ -8,6 +8,7 @@ public class BaseStateMachineBehaviour : StateMachineBehaviour
     public enum AIState { MOVE, GUARD, FIGHT };
 
     protected GameObject entityAI = null;
+    protected GameObject targetEntity = null;
     protected Transform transform = null;
     protected NavMeshAgent navMeshAgent = null;
     protected Animator animator = null;
@@ -67,7 +68,7 @@ public class BaseStateMachineBehaviour : StateMachineBehaviour
     /// Checks whether an enemy is in the field of view and line of sight.
     /// </summary>
     /// <param name="_collider">Collider of the detected entity.</param>
-    public void CheckFieldOfView(Collider _collider)
+    public bool CheckFieldOfView(Collider _collider)
     {
         enemyInSight = false;
 
@@ -83,9 +84,13 @@ public class BaseStateMachineBehaviour : StateMachineBehaviour
                 if (hit.collider.gameObject.CompareTag(targetTag))
                 {
                     enemyInSight = true;
+                    targetEntity = hit.collider.gameObject;
                     animator.SetTrigger(aiStateParameters[AIState.FIGHT]);
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 }

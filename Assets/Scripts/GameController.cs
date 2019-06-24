@@ -35,23 +35,22 @@ public class GameController : MonoBehaviour
     //        OR CREATE ONE SPAWN POINT FOR EACH TEAM
     public Transform[] PlayerSpawnPoint, EnemySpawnPoint;
 
-    [SerializeField]
-    private List<CommandPointHandler> commandPoints;
+    public List<CommandPointHandler> commandPoints;
 
     [SerializeField]
-    private float maxScore, scoringSpeed;
+    private float maxScore, scoringSpeed = 0;
     private float playerScore, enemyScore;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         playerScore = enemyScore = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        CheckPoin();
+        CheckPoints();
     }
 
     /// <summary>
@@ -69,7 +68,7 @@ public class GameController : MonoBehaviour
         return PlayerSpawnPoint[Random.Range(0, PlayerSpawnPoint.Length - 1)];
     }
 
-    private void CheckPoin()
+    private void CheckPoints()
     {
         foreach (CommandPointHandler cp in commandPoints)
         {
