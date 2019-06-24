@@ -77,7 +77,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, layerMask))
         {
-            if (hit.transform.gameObject.CompareTag("Enemy"))
+            if (hit.transform.gameObject.CompareTag("EnemyTeam"))
             {
                 hit.transform.GetComponent<Entity>().TakeDamage(currentWeapon.damage);
             }

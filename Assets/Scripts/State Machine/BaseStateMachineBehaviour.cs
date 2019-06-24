@@ -14,7 +14,7 @@ public class BaseStateMachineBehaviour : StateMachineBehaviour
     protected Animator animator = null;
     protected AIController aiController = null;
 
-    protected Dictionary<AIState, string> aiStateParameters = new Dictionary<AIState, string>()
+    public static Dictionary<AIState, string> aiStateParameters = new Dictionary<AIState, string>()
     {
         [AIState.MOVE] = "Move",
         [AIState.GUARD] = "Guard",
@@ -68,29 +68,32 @@ public class BaseStateMachineBehaviour : StateMachineBehaviour
     /// Checks whether an enemy is in the field of view and line of sight.
     /// </summary>
     /// <param name="_collider">Collider of the detected entity.</param>
-    public bool CheckFieldOfView(Collider _collider)
-    {
-        enemyInSight = false;
+    //public bool CheckFieldOfView(Collider _collider)
+    //{
+    //    enemyInSight = false;
 
-        Vector3 direction = _collider.transform.position - transform.position;
-        float angle = Vector3.Angle(direction, transform.forward);
+    //    Vector3 direction = _collider.transform.position - transform.position;
+    //    float angle = Vector3.Angle(direction, transform.forward);
 
-        if (angle < fieldOfViewAngle * 0.5f)
-        {
-            RaycastHit hit;
+    //    if (angle < fieldOfViewAngle * 0.5f)
+    //    {
+    //        RaycastHit hit;
 
-            if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, detectionRange))
-            {
-                if (hit.collider.gameObject.CompareTag(targetTag))
-                {
-                    enemyInSight = true;
-                    targetEntity = hit.collider.gameObject;
-                    animator.SetTrigger(aiStateParameters[AIState.FIGHT]);
-                    return true;
-                }
-            }
-        }
+    //        if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, detectionRange))
+    //        {
+    //            if (hit.collider.gameObject.CompareTag(targetTag))
+    //            {
+    //                enemyInSight = true;
+    //                if (targetEntity == null)
+    //                {
+    //                    targetEntity = hit.collider.gameObject;
+    //                }
+    //                animator.SetTrigger(aiStateParameters[AIState.FIGHT]);
+    //                return true;
+    //            }
+    //        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 }

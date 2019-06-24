@@ -12,6 +12,14 @@ public class Entity : MonoBehaviour
         get { return isDead; }
         protected set { isDead = value; }
     }
+    protected bool isCrouching = false;
+    public bool IsCrouching                                  // getter setter
+    {
+        get { return isCrouching; }
+        protected set { isCrouching = value; }
+    }
+
+    public float crouchDeltaHeight = 1.0f;
 
     [SerializeField]
     protected int maxHealth = 100;
@@ -20,7 +28,11 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected Behaviour[] componentsToDisableOnDeath;
     protected Collider col;                             // to be disabled on death
+    protected CapsuleCollider capsuleCol;
     protected WaitForSeconds respawnDelay;
+
+    // cached variables
+    protected Vector3 capsuleColCenterCrouchDelta;
 
     /// <summary>
     /// A method to initially set up Entity.
@@ -28,6 +40,8 @@ public class Entity : MonoBehaviour
     public void SetUp()
     {
         col = GetComponent<Collider>();
+        capsuleCol = GetComponent<CapsuleCollider>();
+        capsuleColCenterCrouchDelta = new Vector3(0.0f, crouchDeltaHeight / 2, 0.0f);
         respawnDelay = new WaitForSeconds(GameController.instance.matchSettings.respawnDelay);
         SetDefaults();
     }
@@ -77,6 +91,20 @@ public class Entity : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void Crouch()
+    {
+        isCrouching = true;
+        capsuleCol.height -= crouchDeltaHeight;
+        capsuleCol.center -= capsuleColCenterCrouchDelta;
+    }
+
+    public void StandUp()
+    {
+        isCrouching = false;
+        capsuleCol.height += crouchDeltaHeight;
+        capsuleCol.center += capsuleColCenterCrouchDelta;
     }
 
     /// <summary>

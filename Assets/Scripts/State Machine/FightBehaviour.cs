@@ -14,6 +14,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
 
     private bool hasFoundCover = false;
     private bool isAtCover = false;
+    private bool hasCrouched = false;
     private float shootTimer = 0.0f;
 
     // cached variables
@@ -41,6 +42,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
         else
         {
             hasFoundCover = false;
+            navMeshAgent.isStopped = true;
         }
     }
 
@@ -56,9 +58,11 @@ public class FightBehaviour : BaseStateMachineBehaviour
             if (_hitEnemies.Length > 0)
             {
                 targetEntity = _hitEnemies[0].gameObject;
+                Debug.Log(targetEntity.name);
             }
             else
             {
+                targetEntity = null;
                 animator.SetTrigger(aiStateParameters[AIState.MOVE]);
             }
         }
@@ -79,11 +83,18 @@ public class FightBehaviour : BaseStateMachineBehaviour
         {
             if (shootTimer <= 0)
             {
+                aiController.StandUp();
+                hasCrouched = false;
                 aiController.Shoot();
                 shootTimer = Random.Range(shootTimerMin, shootTimerMax);
             }
             else
             {
+                if (!hasCrouched)
+                {
+                    aiController.Crouch();
+                    hasCrouched = true;
+                }
                 shootTimer -= Time.deltaTime;
             }
         }
@@ -140,5 +151,10 @@ public class FightBehaviour : BaseStateMachineBehaviour
         {
             return null;
         }
+    }
+
+    public void SetTargetEntity(GameObject _targetEntity)
+    {
+        targetEntity = _targetEntity;
     }
 }
