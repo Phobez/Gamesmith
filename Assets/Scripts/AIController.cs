@@ -30,7 +30,7 @@ public class AIController : MonoBehaviour
     private NavMeshAgent agent;             // NavMeshAgent component reference
     private Animator animator;
     private WeaponManager weaponManager;    // WeaponManager component reference
-    private Weapon currentWeapon;           // currently equipped weapon
+    public Weapon currentWeapon;           // currently equipped weapon
 
     // cached variables
     private Quaternion lookRotation;        // rotation to look at target

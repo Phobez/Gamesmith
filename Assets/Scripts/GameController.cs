@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     public List<CommandPointHandler> commandPoints;
 
     [SerializeField]
-    private float maxScore, scoringSpeed = 0;
+    private float maxScore = 0, scoringSpeed = 0;
     private float playerScore, enemyScore;
 
     // Start is called before the first frame update

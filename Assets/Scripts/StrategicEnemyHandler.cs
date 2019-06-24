@@ -13,8 +13,7 @@ public class StrategicEnemyHandler : MonoBehaviour
     }
     #endregion
 
-    [SerializeField]
-    private GameObject[] commandPoints,Players;
+    public GameObject[] commandPoints,Players;
 
     private GameObject priority;
 

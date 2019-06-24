@@ -15,9 +15,9 @@ public class CommandPointHandler : MonoBehaviour
 
     private float playerPoin,enemyPoin;
     [SerializeField]
-    private int maxPoint;
+    private int maxPoint = 0;
     [SerializeField]
-    private float takingSpeed;
+    private float takingSpeed = 0;
     public Transform[] waypoints;
     private List<Transform> playerNear, enemyNear;
     public CommandPointState state;
