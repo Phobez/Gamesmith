@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StrategicEnemyHandler : MonoBehaviour
 {
@@ -14,13 +15,18 @@ public class StrategicEnemyHandler : MonoBehaviour
     #endregion
 
     public GameObject[] commandPoints,Players;
+    public AIController[] enemies;
 
     private GameObject priority;
 
-    private void Update()
-    {
-        
-    }
+    //private void Awake()
+    //{
+    //    enemies[0].target = commandPoints[0].transform;
+    //    enemies[1].target = commandPoints[0].transform;
+    //    enemies[2].target = commandPoints[1].transform;
+    //    enemies[3].target = commandPoints[1].transform;
+    //    enemies[4].target = commandPoints[2].transform;
+    //}
 
     private void CheckPriority()
     {
