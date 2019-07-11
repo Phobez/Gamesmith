@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// A component to control game logic.
@@ -41,9 +42,16 @@ public class GameController : MonoBehaviour
     private float maxScore = 0, scoringSpeed = 0;
     private float playerScore, enemyScore;
 
+    [SerializeField]
+    private GameObject winText, loseText;
+
+    [SerializeField]
+    private Text scoreText;
+
     // Start is called before the first frame update
     private void Start()
     {
+        Time.timeScale = 1f;
         playerScore = enemyScore = 0;
     }
 
@@ -51,6 +59,8 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         CheckPoints();
+        scoreText.text = "Score : " + ((int)playerScore).ToString();
+        CheckWinner();
     }
 
     /// <summary>
@@ -85,13 +95,26 @@ public class GameController : MonoBehaviour
 
     private void CheckWinner()
     {
+        
         if(playerScore >= maxScore)
         {
-            //player win
+            AllyWinning();
+            Time.timeScale = 0f;
         }
         if(enemyScore >= maxScore)
         {
-            //enemy win
+            EnemyWinning();
+            Time.timeScale = 0f;
         }
+    }
+
+    private void AllyWinning()
+    {
+        winText.SetActive(true);
+    }
+
+    private void EnemyWinning()
+    {
+        loseText.SetActive(true);
     }
 }

@@ -11,6 +11,10 @@ public class CommandPointHandler : MonoBehaviour
         EnemyOwned
     }
 
+    [SerializeField]
+    private GameObject commandPointSphere;
+    [SerializeField]
+    private Material neutralSphere, enemySphere, playerSphere;
     public string holderTag = GameController.NO_TEAM_TAG;
 
     private float playerPoin,enemyPoin;
@@ -30,6 +34,7 @@ public class CommandPointHandler : MonoBehaviour
         enemyNear = new List<Transform>();
         playerPoin = enemyPoin = 0;
         state = CommandPointState.Neutral;
+        
     }
 
     // Update is called once per frame
@@ -73,7 +78,7 @@ public class CommandPointHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("PlayerTeam"))
+        if(other.CompareTag("Player"))
         {
             playerNear.Add(other.transform);
         }
@@ -85,7 +90,7 @@ public class CommandPointHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerTeam"))
+        if (other.CompareTag("Player"))
         {
             playerNear.Remove(other.transform);
         }
@@ -100,14 +105,17 @@ public class CommandPointHandler : MonoBehaviour
         if(playerPoin >= maxPoint)
         {
             state = CommandPointState.PlayerOwned;
+            commandPointSphere.GetComponent<Renderer>().material = playerSphere;
         }
         if(enemyPoin >= maxPoint)
         {
             state = CommandPointState.EnemyOwned;
+            commandPointSphere.GetComponent<Renderer>().material = enemySphere;
         }
         if(playerPoin < 1 && enemyPoin < 1)
         {
             state = CommandPointState.Neutral;
+            commandPointSphere.GetComponent<Renderer>().material = neutralSphere;
         }
     }
 
