@@ -78,7 +78,7 @@ public class CommandPointHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("PlayerTeam"))
         {
             playerNear.Add(other.transform);
         }
@@ -90,7 +90,7 @@ public class CommandPointHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerTeam"))
         {
             playerNear.Remove(other.transform);
         }
