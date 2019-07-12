@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : -
+
 public class PlayerCommand : MonoBehaviour
 {
     private const string ALLY_TAG = "PlayerTeam";

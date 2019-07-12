@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 public class GuardBehaviour : BaseStateMachineBehaviour
 {
     public CommandPointHandler cpHandler = null;

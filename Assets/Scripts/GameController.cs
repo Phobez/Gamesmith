@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H., Yosua M.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component to control game logic.
 /// </summary>

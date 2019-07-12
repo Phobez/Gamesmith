@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Yosua M.
+// Documented by    : -
+
 public class StrategicEnemyHandler : MonoBehaviour
 {
     #region Singleton

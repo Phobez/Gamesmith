@@ -2,6 +2,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component controlling AI movement, shooting, and logic.
 /// </summary>

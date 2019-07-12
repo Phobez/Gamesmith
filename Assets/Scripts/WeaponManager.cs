@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component to manage weapon equipping and reload.
 /// </summary>

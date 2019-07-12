@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 public class MoveBehaviour : BaseStateMachineBehaviour
 {
     public float moveStoppingDistance = 5.0f;
