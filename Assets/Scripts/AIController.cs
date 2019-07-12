@@ -148,6 +148,14 @@ public class AIController : MonoBehaviour
         entity.StandUp();
     }
 
+    // PLAYER COMMAND METHODS
+    public void Follow(Transform _target)
+    {
+        animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
+        target = _target;
+        agent.SetDestination(target.position);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
