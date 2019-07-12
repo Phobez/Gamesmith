@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7250177114409592946}
   - component: {fileID: 7250177114409592944}
   - component: {fileID: 7250177114409592945}
-  - component: {fileID: 7250177114409592947}
+  - component: {fileID: 6635805104797518750}
   - component: {fileID: 7250177114409592949}
   - component: {fileID: 7250177114409592958}
   - component: {fileID: 7250177114409592956}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 5843215110329678753}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: PlayerTeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7250177114409592947
+--- !u!114 &6635805104797518750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,11 +108,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7250177114409592948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ff0b51ffb6059488be44a277043fc0, type: 3}
+  m_Script: {fileID: 11500000, guid: bb0a1a19107b02e4aa8038e4e99c4b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7250177115688654187}
-  cameraRotationLimit: 85
+  rotLimit: 85
+  crouchCamHeight: 0.5
+  standCamHeight: 1
 --- !u!114 &7250177114409592949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee96351e144c88458d1fe5353213bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   lookSensitivity: 3
   jumpForce: 10
   gravity: 14
@@ -144,7 +146,7 @@ MonoBehaviour:
   cam: {fileID: 7250177115688654187}
   layerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 1079
 --- !u!114 &7250177114409592956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95836b57536fcf641a514ea066da4f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crouchDeltaHeight: 1
   maxHealth: 100
   componentsToDisableOnDeath:
   - {fileID: 7250177114409592949}

@@ -3,7 +3,7 @@
 /// <summary>
 /// A component to handle player input.
 /// </summary>
-[RequireComponent(typeof(PlayerMover))]
+[RequireComponent(typeof(PlayerMove))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float gravity = 14.0f;
 
     // component caching
-    private PlayerMover mover;
+    private PlayerMove mover;
     private Entity entity;
 
     private float xMov;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        mover = GetComponent<PlayerMover>();
+        mover = GetComponent<PlayerMove>();
         entity = GetComponent<Entity>();
 
         rotation = Vector3.zero;
