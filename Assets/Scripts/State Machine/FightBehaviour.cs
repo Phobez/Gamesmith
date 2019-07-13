@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 public class FightBehaviour : BaseStateMachineBehaviour
 {
     public float shootTimerMin = 0.2f;
@@ -26,6 +30,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        navMeshAgent.isStopped = true;
         position = transform.position;
         navMeshAgent.stoppingDistance = 0.0f;
         sqrDetectionRange = aiController.detectionRange * aiController.detectionRange;
@@ -38,6 +43,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
         {
             hasFoundCover = true;
             navMeshAgent.SetDestination(targetCover.position);
+            navMeshAgent.isStopped = false;
         }
         else
         {
@@ -49,6 +55,13 @@ public class FightBehaviour : BaseStateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (targetEntity == null)
+        {
+            navMeshAgent.isStopped = false;
+            animator.SetTrigger(aiStateParameters[AIState.MOVE]);
+            return;
+        }
+
         offset = targetEntity.transform.position - transform.position;
         sqrDistance = offset.sqrMagnitude;
 
@@ -62,12 +75,17 @@ public class FightBehaviour : BaseStateMachineBehaviour
             }
             else
             {
+                navMeshAgent.isStopped = false;
                 targetEntity = null;
                 animator.SetTrigger(aiStateParameters[AIState.MOVE]);
+                return;
             }
         }
 
-        aiController.FaceTarget(targetEntity.transform);
+        if (targetEntity != null)
+        {
+            aiController.FaceTarget(targetEntity.transform);
+        }
 
         if (hasFoundCover && !isAtCover)
         {

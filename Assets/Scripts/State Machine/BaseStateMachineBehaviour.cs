@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 public class BaseStateMachineBehaviour : StateMachineBehaviour
 {
     public enum AIState { MOVE, GUARD, FIGHT };

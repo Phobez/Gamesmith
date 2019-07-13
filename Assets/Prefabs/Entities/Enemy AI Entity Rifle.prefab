@@ -15,7 +15,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a96a59b7f6bd52469e8c008b391b0b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1 &8831318875097835574
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,13 +43,13 @@ GameObject:
   - component: {fileID: 8831318875097835722}
   - component: {fileID: 8831318875097835572}
   - component: {fileID: 8831318875097835573}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Player Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8831318875097835575
 Transform:
   m_ObjectHideFlags: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535a77b261eb2924190c01fae78522b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   player: {fileID: 0}
 --- !u!1 &8831318875153644866
 GameObject:
@@ -117,8 +117,8 @@ GameObject:
   - component: {fileID: 8831318875153644869}
   - component: {fileID: 8831318875153644888}
   - component: {fileID: 8831318875153644889}
-  m_Layer: 0
-  m_Name: Enemy AI Entity
+  m_Layer: 10
+  m_Name: Enemy AI Entity Rifle
   m_TagString: EnemyTeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 3.5
+  m_Speed: 7.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -248,16 +248,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39b392a3434854e4695b3a6163b3e5a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   detectionRange: 15
   fieldOfViewAngle: 85
-  aiTeamTag: Enemy
-  targetTag: Player
+  aiTeamTag: EnemyTeam
+  targetTag: PlayerTeam
   target: {fileID: 0}
+  agent: {fileID: 0}
   currentWeapon:
     name: Glock
     damage: 10
@@ -279,8 +280,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95836b57536fcf641a514ea066da4f93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   crouchDeltaHeight: 1
   maxHealth: 100
   componentsToDisableOnDeath:
@@ -295,8 +296,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 382991e53cf0cbd4eb0f7131bfa06ae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   primaryWeapon:
     name: Glock
     damage: 10
@@ -420,7 +421,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -433,7 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8831318875312536870}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,12 +674,12 @@ PrefabInstance:
     - target: {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c,
         type: 3}
       propertyPath: m_Animation
-      value: 
+      value:
       objectReference: {fileID: 7400000, guid: 07f2e4fe4181b16478022775b515a74d, type: 2}
     - target: {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c,
         type: 3}
       propertyPath: m_Animations.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 7400000, guid: 07f2e4fe4181b16478022775b515a74d, type: 2}
     - target: {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c,
         type: 3}
@@ -693,7 +694,7 @@ PrefabInstance:
     - target: {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c,
         type: 3}
       propertyPath: m_Animations.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 7400000, guid: 2c78637d4381a9f40bd2fda8ea7cf28f, type: 2}
     - target: {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c,
         type: 3}

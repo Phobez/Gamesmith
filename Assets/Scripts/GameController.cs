@@ -1,6 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H., Yosua M.
+// Documented by    : Abia P.H.
 
 /// <summary>
 /// A component to control game logic.
@@ -43,10 +48,15 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private AudioClip winSound, defeatSound;
+    private GameObject winText, loseText;
+
+    [SerializeField]
+    private Text scoreText;
 
     // Start is called before the first frame update
     private void Start()
     {
+        Time.timeScale = 1f;
         playerScore = enemyScore = 0;
     }
 
@@ -54,6 +64,8 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         CheckPoints();
+        scoreText.text = "Score : " + ((int)playerScore).ToString();
+        CheckWinner();
     }
 
     /// <summary>

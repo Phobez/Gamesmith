@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 public class MoveBehaviour : BaseStateMachineBehaviour
 {
     public float moveStoppingDistance = 5.0f;
@@ -27,6 +31,7 @@ public class MoveBehaviour : BaseStateMachineBehaviour
             if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0.0f)
             {
                 animator.SetTrigger(aiStateParameters[AIState.GUARD]);
+                return;
             }
         }
     }

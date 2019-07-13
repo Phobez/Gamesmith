@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : -
+
 // TEMPORARY SCRIPT
 // REMOVE LATER
 public class GunFire : MonoBehaviour

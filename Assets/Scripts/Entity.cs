@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component defining Player and AI attributes and behaviour.
 /// </summary>
@@ -128,6 +132,8 @@ public class Entity : MonoBehaviour
 
         if(dieSound != null)
         AudioSource.PlayClipAtPoint(dieSound,transform.position);
+        transform.position = new Vector3(transform.position.x, 10000.0f, transform.position.z);
+
         StartCoroutine(Respawn());
     }
 

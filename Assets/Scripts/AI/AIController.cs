@@ -2,6 +2,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component controlling AI movement, shooting, and logic.
 /// </summary>
@@ -25,7 +29,8 @@ public class AIController : MonoBehaviour
     public string targetTag = GameController.NO_TEAM_TAG;
 
     public Transform target;               // NavMesh target
-    private NavMeshAgent agent;             // NavMeshAgent component reference
+    public NavMeshAgent agent;             // NavMeshAgent component reference
+    public AICommander commander;
     private Animator animator;
     private WeaponManager weaponManager;    // WeaponManager component reference
     private Entity entity;                  // Entity component reference
@@ -44,12 +49,18 @@ public class AIController : MonoBehaviour
     private float stateCheckCD; //cooldown for state checking 
     public ParticleSystem muzzleFlash;
     //private EnemyState state;
+    private bool hasEnteredFSM = false;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     // Start is called before the first frame update
     private void Start()
     {
         strategicEnemy = FindObjectOfType<StrategicEnemyHandler>();
-        agent = GetComponent<NavMeshAgent>();
+        
         animator = GetComponent<Animator>();
 
         weaponManager = GetComponent<WeaponManager>();
@@ -62,6 +73,15 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!hasEnteredFSM)
+        {
+            if (target != null)
+            {
+                animator.SetTrigger("Enter");
+                hasEnteredFSM = true;
+            }
+        }
+
         currentWeapon = weaponManager.GetCurrentWeapon();
 
         //offset = target.position - transform.position;
@@ -88,6 +108,18 @@ public class AIController : MonoBehaviour
         //    agent.stoppingDistance = 2;
 
 
+    }
+
+    private void OnEnable()
+    {
+        if (commander != null)
+        {
+            commander.GetNewTarget(this);
+        }
+        if (animator != null)
+        {
+            animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
+        }
     }
 
     /// <summary>
@@ -150,11 +182,27 @@ public class AIController : MonoBehaviour
         entity.StandUp();
     }
 
-    private void OnDrawGizmosSelected()
+    // PLAYER COMMAND METHODS
+    public void Follow(Transform _target)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
+        target = _target;
+        agent.SetDestination(target.position);
     }
+
+    public void SetTarget(Transform _target)
+    {
+        Debug.Log("Set Target called: " + _target);
+        target = _target;
+        agent.SetDestination(_target.position);
+        animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
+    }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, detectionRange);
+    //}
 
     //private void CheckState()
     //{
@@ -202,6 +250,7 @@ public class AIController : MonoBehaviour
         {
             //animator.GetBehaviour<FightBehaviour>().CheckFieldOfView(other);
             CheckFieldOfView(other);
+            Debug.Log("Found target");
         }
     }
 
