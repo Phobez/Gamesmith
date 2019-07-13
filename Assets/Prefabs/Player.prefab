@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 7250177115688654187}
   cameraRotationLimit: 85
+  crouchingCamHeight: 0.5
+  standingCamHeight: 1
 --- !u!114 &7250177114409592949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +131,8 @@ MonoBehaviour:
   lookSensitivity: 3
   jumpForce: 10
   gravity: 14
+  jumpSound: {fileID: 8300000, guid: 171709ece15334544af6d24f025813c5, type: 3}
+  walkSound: {fileID: 8300000, guid: 719053c38a6231c41a791f19c992a593, type: 3}
 --- !u!114 &7250177114409592958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,11 +175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95836b57536fcf641a514ea066da4f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crouchDeltaHeight: 1
   maxHealth: 100
   componentsToDisableOnDeath:
   - {fileID: 7250177114409592949}
   - {fileID: 7250177114409592958}
   - {fileID: 7250177114409592956}
+  dieSound: {fileID: 8300000, guid: 7c89499d9cc35e64687a100b8a35f159, type: 3}
 --- !u!114 &5843215110329678753
 MonoBehaviour:
   m_ObjectHideFlags: 0

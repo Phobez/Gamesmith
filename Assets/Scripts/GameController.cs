@@ -41,6 +41,9 @@ public class GameController : MonoBehaviour
     private float maxScore = 0, scoringSpeed = 0;
     private float playerScore, enemyScore;
 
+    [SerializeField]
+    private AudioClip winSound, defeatSound;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -88,10 +91,12 @@ public class GameController : MonoBehaviour
         if(playerScore >= maxScore)
         {
             //player win
+            AudioSource.PlayClipAtPoint(winSound, player.transform.position);
         }
         if(enemyScore >= maxScore)
         {
             //enemy win
+            AudioSource.PlayClipAtPoint(defeatSound, player.transform.position);
         }
     }
 }
