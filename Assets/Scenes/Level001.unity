@@ -2568,7 +2568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 91.2, y: -28.1}
+  m_AnchoredPosition: {x: 91.20001, y: -28.099976}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490461288
@@ -7322,6 +7322,11 @@ PrefabInstance:
       propertyPath: enemyScoreText
       value: 
       objectReference: {fileID: 1152914401}
+    - target: {fileID: 3214468021529141653, guid: 335c61bda0ddf924b9dffcf06a9172b7,
+        type: 3}
+      propertyPath: defeatSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 89335c572f3d6c24f858403cada9b99c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 335c61bda0ddf924b9dffcf06a9172b7, type: 3}
 --- !u!1001 &1191088787

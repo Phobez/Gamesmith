@@ -192,7 +192,6 @@ public class AIController : MonoBehaviour
 
     public void SetTarget(Transform _target)
     {
-        Debug.Log("Set Target called: " + _target);
         target = _target;
         agent.SetDestination(_target.position);
         animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
