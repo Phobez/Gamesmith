@@ -1260,6 +1260,7 @@ MonoBehaviour:
   - {fileID: 1301960794}
   Players:
   - {fileID: 756159259}
+  enemies: []
 --- !u!4 &1768787426
 Transform:
   m_ObjectHideFlags: 0
@@ -1682,5 +1683,20 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1301960795}
+    - target: {fileID: 6110540082511903487, guid: 841d398bfda9f3c4baee5dbe037a1ae0,
+        type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110540082511903487, guid: 841d398bfda9f3c4baee5dbe037a1ae0,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 07f2e4fe4181b16478022775b515a74d, type: 2}
+    - target: {fileID: 6110540082511903487, guid: 841d398bfda9f3c4baee5dbe037a1ae0,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 841d398bfda9f3c4baee5dbe037a1ae0, type: 3}
