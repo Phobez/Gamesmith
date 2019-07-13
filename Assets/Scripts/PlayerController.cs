@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 10.0f;
     [SerializeField]
     private float gravity = 14.0f;
+    [SerializeField]
+    private AudioClip jumpSound,walkSound;
+    private AudioSource test;
+    private float walkSoundTime;
 
     // component caching
     private PlayerMove mover;
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
         rotation = Vector3.zero;
         cameraRotationX = 0.0f;
+        walkSoundTime = 0.5f;
     }
 
     private void Update()
@@ -54,6 +59,7 @@ public class PlayerController : MonoBehaviour
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
                 verticalVelocity = jumpForce;
                 isGrounded = false;
             }
@@ -67,6 +73,12 @@ public class PlayerController : MonoBehaviour
         velocity = (movHorizontal + movVertical).normalized * speed;
         velocity.y = verticalVelocity;
 
+        if((velocity.x + velocity.z) != 0 && walkSoundTime <= 0)
+        {
+            AudioSource.PlayClipAtPoint(walkSound, transform.position);
+            walkSoundTime = 0.5f;
+        }
+    
         // apply movement
         mover.Move(velocity);
 
@@ -98,6 +110,8 @@ public class PlayerController : MonoBehaviour
 
         // apply rotation
         mover.RotateCamera(cameraRotationX);
+
+        walkSoundTime -= Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -53,3 +53,5 @@ MonoBehaviour:
   commandPoints: []
   maxScore: 0
   scoringSpeed: 0
+  winSound: {fileID: 8300000, guid: aac087cd51a147248af32e78b17bd249, type: 3}
+  defeatSound: {fileID: 8300000, guid: 89335c572f3d6c24f858403cada9b99c, type: 3}

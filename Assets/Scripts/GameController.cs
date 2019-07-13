@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private Text scoreText;
+    private AudioClip winSound, defeatSound;
 
     // Start is called before the first frame update
     private void Start()
@@ -111,10 +112,13 @@ public class GameController : MonoBehaviour
     private void AllyWinning()
     {
         winText.SetActive(true);
+        AudioSource.PlayClipAtPoint(winSound, player.transform.position);
     }
 
     private void EnemyWinning()
     {
         loseText.SetActive(true);
+        
+            AudioSource.PlayClipAtPoint(defeatSound, player.transform.position);
     }
 }
