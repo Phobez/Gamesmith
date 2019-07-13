@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-// Written by : Hans Budiman
+// Designed by      : Abia P.H., Hans B
+// Written by       : Hans B.
+// Documented by    : -
+
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour
 {

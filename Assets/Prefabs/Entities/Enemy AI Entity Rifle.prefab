@@ -43,13 +43,13 @@ GameObject:
   - component: {fileID: 8831318875097835722}
   - component: {fileID: 8831318875097835572}
   - component: {fileID: 8831318875097835573}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Player Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8831318875097835575
 Transform:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8831318875153644869}
   - component: {fileID: 8831318875153644888}
   - component: {fileID: 8831318875153644889}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy AI Entity Rifle
   m_TagString: EnemyTeam
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 3.5
+  m_Speed: 7.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -258,6 +258,7 @@ MonoBehaviour:
   aiTeamTag: EnemyTeam
   targetTag: PlayerTeam
   target: {fileID: 0}
+  agent: {fileID: 0}
   currentWeapon:
     name: Glock
     damage: 10
@@ -433,7 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8831318875312536870}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

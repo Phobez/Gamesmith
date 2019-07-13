@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H., Yosua M.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component to control game logic.
 /// </summary>
@@ -97,16 +101,16 @@ public class GameController : MonoBehaviour
     private void CheckWinner()
     {
         
-        if(playerScore >= maxScore)
-        {
-            AllyWinning();
-            Time.timeScale = 0f;
-        }
-        if(enemyScore >= maxScore)
-        {
-            EnemyWinning();
-            Time.timeScale = 0f;
-        }
+        //if(playerScore >= maxScore)
+        //{
+        //    AllyWinning();
+        //    Time.timeScale = 0f;
+        //}
+        //if(enemyScore >= maxScore)
+        //{
+        //    EnemyWinning();
+        //    Time.timeScale = 0f;
+        //}
     }
 
     private void AllyWinning()

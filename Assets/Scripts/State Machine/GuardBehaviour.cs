@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Designed by      : Abia P.H., Yosua M.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 public class GuardBehaviour : BaseStateMachineBehaviour
 {
     public CommandPointHandler cpHandler = null;
@@ -26,7 +30,7 @@ public class GuardBehaviour : BaseStateMachineBehaviour
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        navMeshAgent.stoppingDistance = 0.0f;
+        navMeshAgent.stoppingDistance = guardStoppingDistance;
         commandPoint = aiController.target;
         cpHandler = aiController.target.gameObject.GetComponent<CommandPointHandler>();
         waypointsLength = cpHandler.waypoints.Length;
