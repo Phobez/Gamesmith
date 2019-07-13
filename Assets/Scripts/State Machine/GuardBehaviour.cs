@@ -30,7 +30,7 @@ public class GuardBehaviour : BaseStateMachineBehaviour
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        navMeshAgent.stoppingDistance = 0.0f;
+        navMeshAgent.stoppingDistance = guardStoppingDistance;
         commandPoint = aiController.target;
         cpHandler = aiController.target.gameObject.GetComponent<CommandPointHandler>();
         waypointsLength = cpHandler.waypoints.Length;

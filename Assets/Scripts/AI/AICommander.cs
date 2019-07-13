@@ -63,8 +63,6 @@ public class AICommander : MonoBehaviour
             soldiers[i].target = cpInfos[tempIndex].cpHandler.transform;
             soldiers[i].agent.SetDestination(soldiers[i].target.position);
         }
-
-        Debug.Log(soldierAssignments.Count);
     }
 
     /// <summary>

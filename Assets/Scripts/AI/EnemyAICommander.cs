@@ -39,8 +39,6 @@ public class EnemyAICommander : AICommander
                 cpInfos[i].priority = -1;
             }
 
-            Debug.Log(cpInfos[i].cpHandler.gameObject.name + ": " + cpInfos[i].priority);
-
             if (cpInfos[i].priority > cpInfos[tempHighestPriorityIndex].priority)
             {
                 tempHighestPriorityIndex = i;

@@ -111,8 +111,14 @@ public class AIController : MonoBehaviour
 
     private void OnEnable()
     {
-        commander.GetNewTarget(this);
-        animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
+        if (commander != null)
+        {
+            commander.GetNewTarget(this);
+        }
+        if (animator != null)
+        {
+            animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
+        }
     }
 
     /// <summary>
@@ -242,6 +248,7 @@ public class AIController : MonoBehaviour
         {
             //animator.GetBehaviour<FightBehaviour>().CheckFieldOfView(other);
             CheckFieldOfView(other);
+            Debug.Log("Found target");
         }
     }
 

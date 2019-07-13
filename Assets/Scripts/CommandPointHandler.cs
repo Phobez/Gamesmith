@@ -132,16 +132,19 @@ public class CommandPointHandler : MonoBehaviour
         {
             state = CommandPointState.PlayerOwned;
             commandPointSphere.GetComponent<Renderer>().material = playerSphere;
+            holderTag = GameController.PLAYER_TEAM_TAG;
         }
-        if(enemyPoint >= maxPoint)
+        else if(enemyPoint >= maxPoint)
         {
             state = CommandPointState.EnemyOwned;
             commandPointSphere.GetComponent<Renderer>().material = enemySphere;
+            holderTag = GameController.NO_TEAM_TAG;
         }
-        if(playerPoint < 1 && enemyPoint < 1)
+        else //(playerPoint < 50 && enemyPoint < 50)
         {
             state = CommandPointState.Neutral;
             commandPointSphere.GetComponent<Renderer>().material = neutralSphere;
+            holderTag = GameController.ENEMY_TEAM_TAG;
         }
     }
 
