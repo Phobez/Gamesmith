@@ -15,7 +15,7 @@ public class AICommander : MonoBehaviour
     public List<AIController> soldiers = new List<AIController>();          // array of team soldiers under AI command
 
     //protected Dictionary<AIController, int> soldierAssignments = new Dictionary<AIController, int>();
-    protected List<SoldierAssignment> soldierAssignments = new List<SoldierAssignment>();
+    protected List<SoldierAssignment> soldierAssignments;
     protected CommandPointInfo[] cpInfos;   // array of info for each CP
     protected int highestPriorityIndex = 0; // index of CP with highest priority
 
@@ -41,6 +41,8 @@ public class AICommander : MonoBehaviour
 
         int tempIndex = 0;
         SoldierAssignment tempSoldierAssignment;
+
+        soldierAssignments = new List<SoldierAssignment>();
 
         // assign soldiers semi-random initial target
         for (int i = 0; i < soldiers.Count; i++)
