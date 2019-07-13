@@ -2,6 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 /// <summary>
 /// A component to handle Player UI.
 /// </summary>

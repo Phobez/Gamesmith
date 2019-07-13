@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Designed by      : Yosua M.
+// Written by       : Yosua M.
+// Documented by    : -
+
 public class Detector : MonoBehaviour
 {
     public GameObject player;

@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 // TEMPORARY SCRIPT
 // REMOVE LATER
 public class MoveTo : MonoBehaviour

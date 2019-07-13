@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+// Designed by      : Abia P.H.
+// Written by       : Abia P.H.
+// Documented by    : Abia P.H.
+
 // TO-DO: REPLACE WITH SCRIPTABLE OBJECT
 /// <summary>
 /// A class containing weapon attributes.
