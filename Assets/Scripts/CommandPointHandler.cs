@@ -29,6 +29,8 @@ public class CommandPointHandler : MonoBehaviour
     public Transform[] waypoints;
     private List<Transform> playerNear, enemyNear;
     public CommandPointState state;
+
+    private SphereCollider col;
     
 
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class CommandPointHandler : MonoBehaviour
     {
         playerNear = new List<Transform>();
         enemyNear = new List<Transform>();
+        col = GetComponent<SphereCollider>();
         playerPoint = enemyPoint = 0;
         state = CommandPointState.Neutral;
         
@@ -44,6 +47,7 @@ public class CommandPointHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckEntities();
         CheckOwner();
         AddPoint();
     }
@@ -141,4 +145,37 @@ public class CommandPointHandler : MonoBehaviour
         }
     }
 
+    private Vector3 offset;
+    private float sqrDistance;
+
+    private void CheckEntities()
+    {
+        if (playerNear.Count > 0)
+        {
+            for (int i = 0; i < playerNear.Count; i++)
+            {
+                offset = playerNear[i].transform.position - transform.position;
+                sqrDistance = offset.sqrMagnitude;
+
+                if (sqrDistance > col.radius * col.radius)
+                {
+                    playerNear.Remove(playerNear[i]);
+                }
+            }
+        }
+
+        if (enemyNear.Count > 0)
+        {
+            for (int i = 0; i < enemyNear.Count; i++)
+            {
+                offset = enemyNear[i].transform.position - transform.position;
+                sqrDistance = offset.sqrMagnitude;
+
+                if (sqrDistance > col.radius * col.radius)
+                {
+                    enemyNear.Remove(enemyNear[i]);
+                }
+            }
+        }
+    }
 }

@@ -30,6 +30,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        navMeshAgent.isStopped = true;
         position = transform.position;
         navMeshAgent.stoppingDistance = 0.0f;
         sqrDetectionRange = aiController.detectionRange * aiController.detectionRange;
@@ -42,6 +43,7 @@ public class FightBehaviour : BaseStateMachineBehaviour
         {
             hasFoundCover = true;
             navMeshAgent.SetDestination(targetCover.position);
+            navMeshAgent.isStopped = false;
         }
         else
         {
