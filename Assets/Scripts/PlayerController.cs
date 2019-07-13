@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float gravity = 14.0f;
     [SerializeField]
     private AudioClip jumpSound,walkSound;
+    private AudioSource test;
     private float walkSoundTime;
 
     // component caching
