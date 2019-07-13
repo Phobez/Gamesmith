@@ -85,7 +85,6 @@ public class PlayerShoot : MonoBehaviour
             {
                 hit.transform.GetComponent<Entity>().TakeDamage(currentWeapon.damage);
             }
-            Debug.Log("hit");
         }
 
         if (currentWeapon.bullets <= 0)

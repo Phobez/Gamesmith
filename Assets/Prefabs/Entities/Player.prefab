@@ -206,6 +206,7 @@ MonoBehaviour:
       type: 3}
   weaponHolder: {fileID: 4155511888829092930}
   isReloading: 0
+  isPlayer: 1
 --- !u!1 &7250177115688654188
 GameObject:
   m_ObjectHideFlags: 0

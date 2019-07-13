@@ -12,6 +12,8 @@ public class GunFire : MonoBehaviour
     private Animation animationComponent;
     public ParticleSystem muzzleFlash;
 
+    public bool isPlayer = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -22,11 +24,14 @@ public class GunFire : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (isPlayer)
         {
-            muzzleFlash.Play();
-            audioSource.Play();
-            animationComponent.Play("Gunshot");
+            if (Input.GetButtonDown("Fire1"))
+            {
+                muzzleFlash.Play();
+                audioSource.Play();
+                animationComponent.Play("Gunshot");
+            }
         }
     }
 }

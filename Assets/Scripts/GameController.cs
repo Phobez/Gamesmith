@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Designed by      : Abia P.H., Yosua M.
 // Written by       : Abia P.H., Yosua M.
@@ -50,7 +51,7 @@ public class GameController : MonoBehaviour
     private GameObject winText, loseText;
 
     [SerializeField]
-    private Text scoreText;
+    private Text playerScoreText, enemyScoreText;
     private AudioClip winSound, defeatSound;
 
     // Start is called before the first frame update
@@ -64,7 +65,8 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         CheckPoints();
-        scoreText.text = "Score : " + ((int)playerScore).ToString();
+        playerScoreText.text = "Team Score : " + ((int)playerScore).ToString();
+        enemyScoreText.text = "Enemy Score : " + ((int)enemyScore).ToString();
         CheckWinner();
     }
 
@@ -100,17 +102,17 @@ public class GameController : MonoBehaviour
 
     private void CheckWinner()
     {
-        
-        //if(playerScore >= maxScore)
-        //{
-        //    AllyWinning();
-        //    Time.timeScale = 0f;
-        //}
-        //if(enemyScore >= maxScore)
-        //{
-        //    EnemyWinning();
-        //    Time.timeScale = 0f;
-        //}
+
+        if (playerScore >= maxScore)
+        {
+            AllyWinning();
+            Time.timeScale = 0f;
+        }
+        if (enemyScore >= maxScore)
+        {
+            EnemyWinning();
+            Time.timeScale = 0f;
+        }
     }
 
     private void AllyWinning()
@@ -124,5 +126,11 @@ public class GameController : MonoBehaviour
         loseText.SetActive(true);
         
             AudioSource.PlayClipAtPoint(defeatSound, player.transform.position);
+    }
+
+    private IEnumerator LoadMainMenu()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene("Menu");
     }
 }

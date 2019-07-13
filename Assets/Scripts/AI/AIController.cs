@@ -250,7 +250,6 @@ public class AIController : MonoBehaviour
         {
             //animator.GetBehaviour<FightBehaviour>().CheckFieldOfView(other);
             CheckFieldOfView(other);
-            Debug.Log("Found target");
         }
     }
 

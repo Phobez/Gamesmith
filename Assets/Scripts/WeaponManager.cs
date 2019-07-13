@@ -20,6 +20,7 @@ public class WeaponManager : MonoBehaviour
     private WaitForSeconds reloadDelay;
 
     public bool isReloading = false;
+    public bool isPlayer = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -39,6 +40,7 @@ public class WeaponManager : MonoBehaviour
 
         GameObject _weaponInstance = (GameObject)Instantiate(_weapon.graphics, weaponHolder.position, weaponHolder.rotation);
         _weaponInstance.transform.SetParent(weaponHolder);
+        _weaponInstance.GetComponent<GunFire>().isPlayer = isPlayer;
 
         currentGraphics = _weaponInstance;
         currentGraphicsAnimator = _weaponInstance.GetComponent<Animator>();
