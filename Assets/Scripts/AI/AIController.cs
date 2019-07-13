@@ -47,6 +47,7 @@ public class AIController : MonoBehaviour
     private StrategicEnemyHandler strategicEnemy;
     public GameObject PlayerNear;
     private float stateCheckCD; //cooldown for state checking 
+    public ParticleSystem muzzleFlash;
     //private EnemyState state;
     private bool hasEnteredFSM = false;
 
@@ -154,6 +155,7 @@ public class AIController : MonoBehaviour
             return;
         }
 
+        muzzleFlash.Play();
         currentWeapon.bullets--;
         GetComponent<AudioSource>().Play();
         if (Physics.Raycast(transform.position, transform.forward, out hit, currentWeapon.range, layerMask))

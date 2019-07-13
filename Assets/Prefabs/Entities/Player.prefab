@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7250177114409592946}
   - component: {fileID: 7250177114409592944}
   - component: {fileID: 7250177114409592945}
-  - component: {fileID: 6635805104797518750}
+  - component: {fileID: 7250177114409592947}
   - component: {fileID: 7250177114409592949}
   - component: {fileID: 7250177114409592958}
   - component: {fileID: 7250177114409592956}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 5843215110329678753}
   m_Layer: 8
   m_Name: Player
-  m_TagString: PlayerTeam
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6635805104797518750
+--- !u!114 &7250177114409592947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,13 +108,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7250177114409592948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0a1a19107b02e4aa8038e4e99c4b6d, type: 3}
+  m_Script: {fileID: 11500000, guid: f9ff0b51ffb6059488be44a277043fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7250177115688654187}
-  rotLimit: 85
-  crouchCamHeight: 0.5
-  standCamHeight: 1
+  cameraRotationLimit: 85
+  crouchingCamHeight: 0.5
+  standingCamHeight: 1
 --- !u!114 &7250177114409592949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,10 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee96351e144c88458d1fe5353213bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   lookSensitivity: 3
   jumpForce: 10
   gravity: 14
+  jumpSound: {fileID: 8300000, guid: 171709ece15334544af6d24f025813c5, type: 3}
+  walkSound: {fileID: 8300000, guid: 719053c38a6231c41a791f19c992a593, type: 3}
 --- !u!114 &7250177114409592958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ MonoBehaviour:
   cam: {fileID: 7250177115688654187}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1079
+    m_Bits: 55
 --- !u!114 &7250177114409592956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +181,7 @@ MonoBehaviour:
   - {fileID: 7250177114409592949}
   - {fileID: 7250177114409592958}
   - {fileID: 7250177114409592956}
+  dieSound: {fileID: 8300000, guid: 7c89499d9cc35e64687a100b8a35f159, type: 3}
 --- !u!114 &5843215110329678753
 MonoBehaviour:
   m_ObjectHideFlags: 0

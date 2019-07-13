@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private Text scoreText;
+    private AudioClip winSound, defeatSound;
 
     // Start is called before the first frame update
     private void Start()
@@ -99,7 +100,7 @@ public class GameController : MonoBehaviour
 
     private void CheckWinner()
     {
-        
+
         //if(playerScore >= maxScore)
         //{
         //    AllyWinning();
@@ -120,5 +121,15 @@ public class GameController : MonoBehaviour
     private void EnemyWinning()
     {
         loseText.SetActive(true);
+        if(playerScore >= maxScore)
+        {
+            //player win
+            AudioSource.PlayClipAtPoint(winSound, player.transform.position);
+        }
+        if(enemyScore >= maxScore)
+        {
+            //enemy win
+            AudioSource.PlayClipAtPoint(defeatSound, player.transform.position);
+        }
     }
 }

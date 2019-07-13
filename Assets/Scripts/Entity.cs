@@ -35,6 +35,8 @@ public class Entity : MonoBehaviour
     protected CapsuleCollider capsuleCol;
     protected WaitForSeconds respawnDelay;
 
+    [SerializeField]
+    protected AudioClip dieSound;
     // cached variables
     protected Vector3 capsuleColCenterCrouchDelta;
 
@@ -129,6 +131,9 @@ public class Entity : MonoBehaviour
         }
 
         transform.position = new Vector3(transform.position.x, 10000.0f, transform.position.z);
+
+        if(dieSound != null)
+        AudioSource.PlayClipAtPoint(dieSound,transform.position);
 
         StartCoroutine(Respawn());
     }

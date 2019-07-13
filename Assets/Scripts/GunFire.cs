@@ -10,6 +10,7 @@ public class GunFire : MonoBehaviour
 {
     private AudioSource audioSource;
     private Animation animationComponent;
+    public ParticleSystem muzzleFlash;
 
     // Start is called before the first frame update
     private void Start()
@@ -23,6 +24,7 @@ public class GunFire : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            muzzleFlash.Play();
             audioSource.Play();
             animationComponent.Play("Gunshot");
         }
