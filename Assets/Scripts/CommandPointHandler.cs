@@ -50,9 +50,9 @@ public class CommandPointHandler : MonoBehaviour
 
     private void AddPoint()
     {
-        if(playerNear.Count != 0 && playerPoint <= maxPoint && enemyPoint <= 0)
+        if (playerNear.Count != 0 && playerPoint <= maxPoint && enemyPoint <= 0)
         {
-            foreach(Transform player in playerNear)
+            foreach (Transform player in playerNear)
             {
                 playerPoint += Time.deltaTime * takingSpeed;
             }
@@ -64,14 +64,14 @@ public class CommandPointHandler : MonoBehaviour
                 enemyPoint -= Time.deltaTime * takingSpeed;
             }
         }
-        if(enemyNear.Count != 0 && playerPoint >= -maxPoint && playerPoint <= 0)
+        if (enemyNear.Count != 0 && enemyPoint <= maxPoint && playerPoint <= 0)
         {
             foreach (Transform enemy in enemyNear)
             {
                 enemyPoint += Time.deltaTime * takingSpeed;
             }
         }
-        else if(enemyNear.Count != 0 && playerPoint >= -maxPoint && playerPoint <= 0)
+        else if (enemyNear.Count != 0 && enemyPoint <= maxPoint && playerPoint > 0)
         {
             foreach (Transform enemy in playerNear)
             {
@@ -89,6 +89,24 @@ public class CommandPointHandler : MonoBehaviour
         else if(other.CompareTag("EnemyTeam"))
         {
             enemyNear.Add(other.transform);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("PlayerTeam"))
+        {
+            if (!playerNear.Contains(other.transform))
+            {
+                playerNear.Add(other.transform);
+            }
+        }
+        else if (other.CompareTag("EnemyTeam"))
+        {
+            if (!enemyNear.Contains(other.transform))
+            {
+                enemyNear.Add(other.transform);
+            }
         }
     }
 

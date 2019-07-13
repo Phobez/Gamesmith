@@ -18,18 +18,34 @@ public class AllyAICommander : AICommander
     // Update is called once per frame
     private void Update()
     {
+        int tempPriority = 0;
+
         // counts priority for each command point
         for (int i = 0; i < cpInfos.Length; i++)
         {
-            teamCPPoints = cpInfos[i].cpHandler.playerPoint;
-            enemyCPPoints = cpInfos[i].cpHandler.enemyPoint;
+            tempPriority = cpInfos[i].priority;
+
+            teamCPPoints = cpInfos[i].cpHandler.enemyPoint;
+            enemyCPPoints = cpInfos[i].cpHandler.playerPoint;
             cpInfos[i].priority = Mathf.RoundToInt(maxCPPoints - enemyCPPoints + teamCPPoints);
 
+            Debug.Log(cpInfos[i].cpHandler.gameObject.name + ": " + cpInfos[i].priority);
+
+            if (cpInfos[i].priority < 100)
+            {
+                if (cpInfos[i].priority > cpInfos[tempHighestPriorityIndex].priority)
+                {
+                    tempHighestPriorityIndex = i;
+                }
+            }
+
             // assigns new targets if command point captured
-            if (cpInfos[i].priority == 100)
+            if (cpInfos[i].priority >= 100)
             {
                 AssignNewTarget(i);
             }
         }
+
+        highestPriorityIndex = tempHighestPriorityIndex;
     }
 }

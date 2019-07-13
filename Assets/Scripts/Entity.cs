@@ -128,6 +128,8 @@ public class Entity : MonoBehaviour
             col.enabled = false;
         }
 
+        transform.position = new Vector3(transform.position.x, 10000.0f, transform.position.z);
+
         StartCoroutine(Respawn());
     }
 

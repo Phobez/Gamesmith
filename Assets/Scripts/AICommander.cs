@@ -14,7 +14,8 @@ public class AICommander : MonoBehaviour
     public CommandPointHandler[] cpHandlers = new CommandPointHandler[3];   // array of CP
     public List<AIController> soldiers = new List<AIController>();          // array of team soldiers under AI command
 
-    protected Dictionary<AIController, int> soldierAssignments = new Dictionary<AIController, int>();
+    //protected Dictionary<AIController, int> soldierAssignments = new Dictionary<AIController, int>();
+    protected List<SoldierAssignment> soldierAssignments = new List<SoldierAssignment>();
     protected CommandPointInfo[] cpInfos;   // array of info for each CP
     protected int highestPriorityIndex = 0; // index of CP with highest priority
 
@@ -22,6 +23,7 @@ public class AICommander : MonoBehaviour
     protected float teamCPPoints = 0;     // CP points for team at a CP
     protected float enemyCPPoints = 0;    // CP points for enemy team at a CP
     protected int tempPriority = 0;     // temporary priority value
+    protected int tempHighestPriorityIndex = 0;
 
     // Start is called before the first frame update
     protected void Start()
@@ -33,23 +35,34 @@ public class AICommander : MonoBehaviour
         {
             cpInfos[i].cpHandler = cpHandlers[i];
             cpInfos[i].priority = 0;
+            cpInfos[i].assignedSoldiers = new List<AIController>();
             //cpInfos[i].assignedSoldiers = new List<AIController>();
         }
 
         int tempIndex = 0;
+        SoldierAssignment tempSoldierAssignment;
 
         // assign soldiers semi-random initial target
         for (int i = 0; i < soldiers.Count; i++)
         {
+            soldiers[i].commander = this;
+
             do
             {
-                tempIndex = Random.Range(0, 2);
-            } while (cpInfos[tempIndex].assignedSoldiers.Count == 2);
+                tempIndex = Random.Range(0, 3);
+            } while (cpInfos[tempIndex].assignedSoldiers.Count >= 2);
 
             //cpInfos[tempIndex].assignedSoldiers.Add(soldiers[i]);
-            soldierAssignments.Add(soldiers[i], tempIndex);
+            //soldierAssignments.Add(soldiers[i], tempIndex);
+            tempSoldierAssignment = new SoldierAssignment();
+            tempSoldierAssignment.soldier = soldiers[i];
+            tempSoldierAssignment.targetIndex = tempIndex;
+            soldierAssignments.Add(tempSoldierAssignment);
             soldiers[i].target = cpInfos[tempIndex].cpHandler.transform;
+            soldiers[i].agent.SetDestination(soldiers[i].target.position);
         }
+
+        Debug.Log(soldierAssignments.Count);
     }
 
     /// <summary>
@@ -60,12 +73,29 @@ public class AICommander : MonoBehaviour
     {
         // iterate through dictionary
         // reassign _index-target soldiers to new target
-        foreach (KeyValuePair<AIController, int> soldierAssignment in soldierAssignments)
+        //foreach (KeyValuePair<AIController, int> soldierAssignment in soldierAssignments)
+        //{
+        //    if (soldierAssignment.Value == _index)
+        //    {
+        //        soldierAssignments[soldierAssignment.Key] = _index;
+        //        soldierAssignment.Key.target = cpInfos[highestPriorityIndex].cpHandler.transform;
+        //    }
+        //}
+        Debug.Log("Assign new target called: " + _index);
+
+        SoldierAssignment tempSoldierAssignment;
+
+        Debug.Log(soldierAssignments.Count);
+
+        for (int i = 0; i < soldierAssignments.Count; i++)
         {
-            if (soldierAssignment.Value == _index)
+            Debug.Log("For entered.");
+            if (soldierAssignments[i].targetIndex == _index)
             {
-                soldierAssignments[soldierAssignment.Key] = _index;
-                soldierAssignment.Key.target = cpInfos[highestPriorityIndex].cpHandler.transform;
+                soldierAssignments[i].soldier.SetTarget(cpInfos[highestPriorityIndex].cpHandler.transform);
+                tempSoldierAssignment = soldierAssignments[i];
+                tempSoldierAssignment.targetIndex = highestPriorityIndex;
+                soldierAssignments[i] = tempSoldierAssignment;
             }
         }
     }
@@ -76,8 +106,20 @@ public class AICommander : MonoBehaviour
     /// <param name="_soldier">Soldier requesting new target.</param>
     public void GetNewTarget(AIController _soldier)
     {
-        soldierAssignments[_soldier] = highestPriorityIndex;
-        _soldier.target = cpInfos[highestPriorityIndex].cpHandler.transform;
+        SoldierAssignment tempSoldierAssignment;
+
+        //soldierAssignments[_soldier] = highestPriorityIndex;
+        //_soldier.target = cpInfos[highestPriorityIndex].cpHandler.transform;
+        for (int i = 0; i < soldierAssignments.Count; i++)
+        {
+            if (soldierAssignments[i].soldier == _soldier)
+            {
+                soldierAssignments[i].soldier.SetTarget(cpInfos[highestPriorityIndex].cpHandler.transform);
+                tempSoldierAssignment = soldierAssignments[i];
+                tempSoldierAssignment.targetIndex = highestPriorityIndex;
+                soldierAssignments[i] = tempSoldierAssignment;
+            }
+        }
     }
 }
 
@@ -89,4 +131,10 @@ public struct CommandPointInfo
     public CommandPointHandler cpHandler;
     public int priority;
     public List<AIController> assignedSoldiers;
+}
+
+public struct SoldierAssignment
+{
+    public AIController soldier;
+    public int targetIndex;
 }

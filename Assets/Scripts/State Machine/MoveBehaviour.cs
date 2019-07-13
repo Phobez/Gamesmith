@@ -31,6 +31,7 @@ public class MoveBehaviour : BaseStateMachineBehaviour
             if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0.0f)
             {
                 animator.SetTrigger(aiStateParameters[AIState.GUARD]);
+                return;
             }
         }
     }

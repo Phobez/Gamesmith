@@ -18,18 +18,32 @@ public class EnemyAICommander : AICommander
     // Update is called once per frame
     private void Update()
     {
+        int tempPriority = 0;
+
         // counts priority for each command point
         for (int i = 0; i < cpInfos.Length; i++)
         {
+            tempPriority = cpInfos[i].priority;
+            
             teamCPPoints = cpInfos[i].cpHandler.enemyPoint;
             enemyCPPoints = cpInfos[i].cpHandler.playerPoint;
             cpInfos[i].priority = Mathf.RoundToInt(maxCPPoints - teamCPPoints + enemyCPPoints);
 
+            if (cpInfos[i].priority < 100)
+            {
+                if (cpInfos[i].priority > cpInfos[tempHighestPriorityIndex].priority)
+                {
+                    tempHighestPriorityIndex = i;
+                }
+            }
+
             // assigns new targets if command point captured
-            if (cpInfos[i].priority == 100)
+            if (cpInfos[i].priority >= 100 && tempPriority < 100)
             {
                 AssignNewTarget(i);
             }
         }
+
+        highestPriorityIndex = tempHighestPriorityIndex;
     }
 }

@@ -53,6 +53,13 @@ public class FightBehaviour : BaseStateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (targetEntity == null)
+        {
+            navMeshAgent.isStopped = false;
+            animator.SetTrigger(aiStateParameters[AIState.MOVE]);
+            return;
+        }
+
         offset = targetEntity.transform.position - transform.position;
         sqrDistance = offset.sqrMagnitude;
 
@@ -66,12 +73,17 @@ public class FightBehaviour : BaseStateMachineBehaviour
             }
             else
             {
+                navMeshAgent.isStopped = false;
                 targetEntity = null;
                 animator.SetTrigger(aiStateParameters[AIState.MOVE]);
+                return;
             }
         }
 
-        aiController.FaceTarget(targetEntity.transform);
+        if (targetEntity != null)
+        {
+            aiController.FaceTarget(targetEntity.transform);
+        }
 
         if (hasFoundCover && !isAtCover)
         {

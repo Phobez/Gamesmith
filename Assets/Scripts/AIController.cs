@@ -29,7 +29,8 @@ public class AIController : MonoBehaviour
     public string targetTag = GameController.NO_TEAM_TAG;
 
     public Transform target;               // NavMesh target
-    private NavMeshAgent agent;             // NavMeshAgent component reference
+    public NavMeshAgent agent;             // NavMeshAgent component reference
+    public AICommander commander;
     private Animator animator;
     private WeaponManager weaponManager;    // WeaponManager component reference
     private Entity entity;                  // Entity component reference
@@ -47,12 +48,18 @@ public class AIController : MonoBehaviour
     public GameObject PlayerNear;
     private float stateCheckCD; //cooldown for state checking 
     //private EnemyState state;
+    private bool hasEnteredFSM = false;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     // Start is called before the first frame update
     private void Start()
     {
         strategicEnemy = FindObjectOfType<StrategicEnemyHandler>();
-        agent = GetComponent<NavMeshAgent>();
+        
         animator = GetComponent<Animator>();
 
         weaponManager = GetComponent<WeaponManager>();
@@ -65,6 +72,15 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!hasEnteredFSM)
+        {
+            if (target != null)
+            {
+                animator.SetTrigger("Enter");
+                hasEnteredFSM = true;
+            }
+        }
+
         currentWeapon = weaponManager.GetCurrentWeapon();
 
         //offset = target.position - transform.position;
@@ -91,6 +107,12 @@ public class AIController : MonoBehaviour
         //    agent.stoppingDistance = 2;
 
 
+    }
+
+    private void OnEnable()
+    {
+        commander.GetNewTarget(this);
+        animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
     }
 
     /// <summary>
@@ -160,11 +182,19 @@ public class AIController : MonoBehaviour
         agent.SetDestination(target.position);
     }
 
-    private void OnDrawGizmosSelected()
+    public void SetTarget(Transform _target)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        Debug.Log("Set Target called: " + _target);
+        target = _target;
+        agent.SetDestination(_target.position);
+        animator.SetTrigger(BaseStateMachineBehaviour.aiStateParameters[BaseStateMachineBehaviour.AIState.MOVE]);
     }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, detectionRange);
+    //}
 
     //private void CheckState()
     //{

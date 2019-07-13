@@ -100,16 +100,16 @@ public class GameController : MonoBehaviour
     private void CheckWinner()
     {
         
-        if(playerScore >= maxScore)
-        {
-            AllyWinning();
-            Time.timeScale = 0f;
-        }
-        if(enemyScore >= maxScore)
-        {
-            EnemyWinning();
-            Time.timeScale = 0f;
-        }
+        //if(playerScore >= maxScore)
+        //{
+        //    AllyWinning();
+        //    Time.timeScale = 0f;
+        //}
+        //if(enemyScore >= maxScore)
+        //{
+        //    EnemyWinning();
+        //    Time.timeScale = 0f;
+        //}
     }
 
     private void AllyWinning()
