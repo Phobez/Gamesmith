@@ -81,15 +81,11 @@ public class AICommander : MonoBehaviour
         //        soldierAssignment.Key.target = cpInfos[highestPriorityIndex].cpHandler.transform;
         //    }
         //}
-        Debug.Log("Assign new target called: " + _index);
 
         SoldierAssignment tempSoldierAssignment;
 
-        Debug.Log(soldierAssignments.Count);
-
         for (int i = 0; i < soldierAssignments.Count; i++)
         {
-            Debug.Log("For entered.");
             if (soldierAssignments[i].targetIndex == _index)
             {
                 soldierAssignments[i].soldier.SetTarget(cpInfos[highestPriorityIndex].cpHandler.transform);
